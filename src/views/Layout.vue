@@ -25,11 +25,12 @@
 
 <script>
 import Sidebar from './../components/Sidebar';
+const isMobile = /(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent);
 
 export default {
   data() {
     return {
-      isCollapse: false,
+      isCollapse: isMobile,
       user: {}
     }
   },
