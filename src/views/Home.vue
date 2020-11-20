@@ -1,8 +1,7 @@
 <template>
   <div>
     <div ref="chart" class="block chart">
-      <el-button round type="primary">确定</el-button>
-      <el-button round>取消</el-button>
+      <h1>Hello!</h1>
     </div>
   </div>
 </template>
