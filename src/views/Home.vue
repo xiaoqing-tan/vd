@@ -1,7 +1,7 @@
 <template>
   <div>
     <div ref="chart" class="block chart">
-      <h1>Hello!</h1>
+      <h1>Hello!!!</h1>
     </div>
   </div>
 </template>
