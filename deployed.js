@@ -20,7 +20,7 @@ handler.on('push', function (event) {
   console.log('Received a push event for %s to %s',
     event.payload.repository.name,
     event.payload.ref)
-  if (event.payload.ref.indexOf('master') > -1) {
+  if (event.payload.ref.indexOf('main') > -1) {
     rumCommand('sh', ['./deployed.sh'], function (txt) {
       console.log(txt)
     })
