@@ -1,6 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Layout from './views/Layout';
+import Home from './views/Home';
+import Charts from './views/components/charts';
+import Form from './views/components/form';
+import Table from './views/components/table';
+import Setting from './views/setting';
 
 Vue.use(Router);
 
@@ -21,35 +26,35 @@ const router = new Router({
       children: [
         {
           path: '',
-          component: () => import(/* webpackChunkName: "page" */ './views/Home.vue'),
+          component: Home,
           meta: {
             requiresAuth: true
           }
         },
         {
           path: '/setting',
-          component: import(/* webpackChunkName: "setting" */ './views/setting'),
+          component: Setting,
           meta: {
             requiresAuth: true
           }
         },
         {
           path: '/components/form',
-          component: import(/* webpackChunkName: "components" */ './views/components/form'),
+          component: Form,
           meta: {
             requiresAuth: true
           }
         },
         {
           path: '/components/charts',
-          component: import(/* webpackChunkName: "components" */ './views/components/charts'),
+          component: Charts,
           meta: {
             requiresAuth: true
           }
         },
         {
           path: '/components/table',
-          component: import(/* webpackChunkName: "components" */ './views/components/table'),
+          component: Table,
           meta: {
             requiresAuth: true
           }
@@ -58,7 +63,7 @@ const router = new Router({
     },
     {
       path: '/login',
-      component: () => import(/* webpackChunkName: "page" */ './views/login/index.vue')
+      component: () => import('./views/login/index.vue')
     }
   ]
 });
