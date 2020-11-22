@@ -8,6 +8,7 @@
       @close="onClose"
       background-color="#0d2755"
       text-color="#fff"
+      unique-opened
       router
       :collapse-transition="false"
       :collapse="isCollapse">
