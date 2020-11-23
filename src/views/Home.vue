@@ -1,8 +1,23 @@
 <template>
   <div class="home">
+    <h2>概览</h2>
+    <div class="summary">
+      <div class="item block">
+        <p>当日</p>
+        <p style="color: #16c516">265</p>
+      </div>
+      <div class="item block">
+        <p>本周</p>
+        <p style="color: #fb4223">265</p>
+      </div>
+      <div class="item block">
+        <p>本月</p>
+        <p style="color: #09b6fb">265</p>
+      </div>
+    </div>
+    <h2>统计</h2>   
     <div class="charts">
       <div ref="chart" class="block chart">
-        <h1>Hello World...</h1>
       </div>
     </div>
   </div>
@@ -35,9 +50,6 @@ export default {
       echarts.registerTheme('macarons', macarons)
       this.sale = echarts.init(this.$refs['chart'], 'macarons');
       this.sale.setOption({
-        title: {
-          text: '销量',
-        },
         tooltip: {},
         xAxis: {
             data: ['01-01', '02-01', '03-01', '04-01', '05-01', '06-01']
@@ -56,14 +68,45 @@ export default {
 
 <style lang="less">
   .home {
-
+    h2 {
+      color: #333;
+    }
+  }
+  .summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    .item {
+      width: 32.333%;
+      box-sizing: border-box;
+      p {
+        margin: 0;
+        &:first-child {
+          font-size: 16px;
+          color: #ccc;
+          font-weight: bold;
+          margin-bottom: 20px;
+        }
+        &:last-child {
+          font-size: 40px;
+          color: #333;
+          font-weight: bold;
+          &::after {
+            content: '次';
+            color: #ccc;
+            font-size: 16px;
+            padding: 0 5px;
+          }
+        }
+      }
+    }
   }
   .charts {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     .chart {
-      width: 33.333%;
+      width: 100%;
       height: 250px;
     }
   }
