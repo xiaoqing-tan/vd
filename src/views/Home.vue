@@ -2,23 +2,37 @@
   <div class="home">
     <h2>概览</h2>
     <div class="summary">
-      <div class="item block">
-        <p>当日</p>
-        <p style="color: #16c516">265</p>
-      </div>
-      <div class="item block">
-        <p>本周</p>
-        <p style="color: #fb4223">265</p>
-      </div>
-      <div class="item block">
-        <p>本月</p>
-        <p style="color: #09b6fb">265</p>
-      </div>
+        <el-row :gutter="20">
+          <el-col :sm="12" :xs="24" :md="8" :span="8">
+            <div class="item block">
+              <p>日均销售额</p>
+              <p><span>265</span><span>同比-34%</span></p>
+            </div>
+          </el-col>
+          <el-col :sm="12" :xs="24" :md="8" :span="8">
+            <div class="item block">
+              <p>日均访问量</p>
+              <p><span>265</span><span>同比+34%</span></p>
+            </div>
+          </el-col>
+          <el-col :sm="12" :xs="24" :md="8" :span="8">
+            <div class="item block">
+              <p>转化率</p>
+              <p><span>265</span><span>同比+21%</span></p>
+            </div>
+          </el-col>
+        </el-row>
     </div>
     <h2>统计</h2>   
     <div class="charts">
-      <div ref="chart" class="block chart">
-      </div>
+      <el-row :gutter="20">
+        <el-col :sm="16" :xs="24" :md="16" :span="16">
+          <div ref="chart" class="chart"></div>
+        </el-col>
+        <el-col :sm="8" :xs="24" :md="8" :span="8">
+          <div class="chart"></div>
+        </el-col>
+      </el-row>
     </div>
   </div>
 </template>
@@ -52,13 +66,13 @@ export default {
       this.sale.setOption({
         tooltip: {},
         xAxis: {
-            data: ['01-01', '02-01', '03-01', '04-01', '05-01', '06-01']
+          data: ['01-01', '02-01', '03-01', '04-01', '05-01', '06-01']
         },
         yAxis: {},
         series: [{
-            name: '销量',
-            type: 'line',
-            data: [5, 20, 36, 10, 10, 20]
+          name: '销量',
+          type: 'line',
+          data: [5, 20, 36, 10, 10, 20]
         }]
       });
     }
@@ -70,63 +84,67 @@ export default {
   .home {
     h2 {
       color: #333;
+      font-size: 18px;
     }
   }
   .summary {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 40px;
     .item {
-      width: 32.333%;
       box-sizing: border-box;
+      background-color: #fff;
+      box-shadow: 1px 1px 3px rgba(180, 179, 179, 0.1);
+      padding: 30px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      &:hover {
+        background-color: #f9f9f9 ;
+        transition: all .3s ease;
+      }
       p {
         margin: 0;
+        color: #999;
         &:first-child {
           font-size: 16px;
-          color: #ccc;
-          font-weight: bold;
           margin-bottom: 20px;
         }
         &:last-child {
-          font-size: 40px;
-          color: #333;
+          font-size: 30px;
           font-weight: bold;
-          &::after {
-            content: '次';
-            color: #ccc;
-            font-size: 16px;
-            padding: 0 5px;
+          color: #666;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-weight: normal;
+          span {
+            &:first-child {
+              &::after {
+                content: '次';
+                color: #666;
+                font-size: 14px;
+                font-weight: normal;
+                padding: 0 5px;
+              }
+            }
+            &:last-child {
+              font-size: 14px;
+            }
           }
         }
       }
     }
   }
   .charts {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     .chart {
       width: 100%;
       height: 250px;
+    box-sizing: border-box;
+      background-color: #fff;
+      box-shadow: 1px 1px 3px rgba(180, 179, 179, 0.1);
+      padding: 30px;
+      border-radius: 4px;
+      margin-bottom: 20px;
     }
   }
-  .block {
-    border-radius: 0;
-    background-color: #fff;
-    box-shadow: 1px 1px 6px rgba(129, 129, 129, 0.1);
-    padding: 20px;
-    border-radius: 5px;
-  }
-  .button {
-    width: 100px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    border-radius: 25px;
-    color: #fff;
-    background-color: rgb(7, 137, 243) ;
-    &.red {
-      background-color: rgb(247, 172, 12) ;
-    }
-  }
+
+
+
 </style>

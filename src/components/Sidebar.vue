@@ -146,7 +146,8 @@ export default {
       }
     }
   }
-   &.is-close {
+
+  &.is-close {
     width: 64px;
     transition: all .2s ease-in-out;
     .logo {
