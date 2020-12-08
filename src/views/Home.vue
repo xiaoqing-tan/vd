@@ -4,19 +4,19 @@
     <div class="summary">
         <el-row :gutter="20">
           <el-col :sm="12" :xs="24" :md="8" :span="8">
-            <div class="item block">
+            <div class="item">
               <p>日均销售额</p>
               <p><span>265</span><span>同比-34%</span></p>
             </div>
           </el-col>
           <el-col :sm="12" :xs="24" :md="8" :span="8">
-            <div class="item block">
+            <div class="item">
               <p>日均访问量</p>
               <p><span>265</span><span>同比+34%</span></p>
             </div>
           </el-col>
           <el-col :sm="12" :xs="24" :md="8" :span="8">
-            <div class="item block">
+            <div class="item">
               <p>转化率</p>
               <p><span>265</span><span>同比+21%</span></p>
             </div>
@@ -27,10 +27,14 @@
     <div class="charts">
       <el-row :gutter="20">
         <el-col :sm="16" :xs="24" :md="16" :span="16">
-          <div ref="chart" class="chart"></div>
+          <div class="block">
+            <ve-histogram :data="histogramChartData"></ve-histogram>
+          </div>
         </el-col>
         <el-col :sm="8" :xs="24" :md="8" :span="8">
-          <div class="chart"></div>
+          <div class="block">
+            <ve-pie :data="pieChartData"></ve-pie>
+          </div>
         </el-col>
       </el-row>
     </div>
@@ -38,13 +42,32 @@
 </template>
 
 <script>
-import echarts from 'echarts';
-import macarons from './../themes/macarons.js';
 
 export default {
   data() {
     return {
-      sale: null
+        histogramChartData: {
+          columns: ['日期', '访问用户', '下单用户', '下单率'],
+          rows: [
+            { '日期': '1/1', '访问用户': 1393, '下单用户': 1093, '下单率': 990 },
+            { '日期': '1/2', '访问用户': 3530, '下单用户': 3230, '下单率': 700 },
+            { '日期': '1/3', '访问用户': 2923, '下单用户': 2623, '下单率': 3000 },
+            { '日期': '1/4', '访问用户': 1723, '下单用户': 1423, '下单率': 1200 },
+            { '日期': '1/5', '访问用户': 3792, '下单用户': 3492, '下单率': 2223 },
+            { '日期': '1/6', '访问用户': 4593, '下单用户': 4293, '下单率': 878 }
+          ]
+        },
+        pieChartData: {
+          columns: ['日期', '访问用户'],
+          rows: [
+            { '日期': '1/1', '访问用户': 1393 },
+            { '日期': '1/2', '访问用户': 3530 },
+            { '日期': '1/3', '访问用户': 2923 },
+            { '日期': '1/4', '访问用户': 1723 },
+            { '日期': '1/5', '访问用户': 3792 },
+            { '日期': '1/6', '访问用户': 4593 }
+          ]
+        }
     }
   },
   mounted() {
@@ -56,26 +79,7 @@ export default {
   },
   methods: {
     resize() {
-      this.$nextTick(() => {
-        this.sale.resize();
-      })       
     },
-    initChart() {
-      echarts.registerTheme('macarons', macarons)
-      this.sale = echarts.init(this.$refs['chart'], 'macarons');
-      this.sale.setOption({
-        tooltip: {},
-        xAxis: {
-          data: ['01-01', '02-01', '03-01', '04-01', '05-01', '06-01']
-        },
-        yAxis: {},
-        series: [{
-          name: '销量',
-          type: 'line',
-          data: [5, 20, 36, 10, 10, 20]
-        }]
-      });
-    }
   }
 }
 </script>
@@ -132,19 +136,14 @@ export default {
       }
     }
   }
-  .charts {
-    .chart {
-      width: 100%;
-      height: 250px;
+  .block {
     box-sizing: border-box;
-      background-color: #fff;
-      box-shadow: 1px 1px 3px rgba(180, 179, 179, 0.1);
-      padding: 30px;
-      border-radius: 4px;
-      margin-bottom: 20px;
-    }
+    background-color: #fff;
+    box-shadow: 1px 1px 3px rgba(180, 179, 179, 0.1);
+    padding: 30px 30px 0;
+    border-radius: 4px;
+    margin-bottom: 20px;
   }
-
 
 
 </style>
