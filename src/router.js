@@ -9,6 +9,8 @@ import Setting from './views/setting';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
+NProgress.configure({ showSpinner: false });
+
 Vue.use(Router);
 
 const originalPush = Router.prototype.push;
