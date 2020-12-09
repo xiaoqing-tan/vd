@@ -140,7 +140,7 @@ export default {
     box-sizing: border-box;
     background-color: #fff;
     box-shadow: 1px 1px 3px rgba(180, 179, 179, 0.1);
-    padding: 30px 30px 0;
+    padding: 30px;
     border-radius: 4px;
     margin-bottom: 20px;
   }

@@ -6,6 +6,8 @@ import Charts from './views/components/charts';
 import Form from './views/components/form';
 import Table from './views/components/table';
 import Setting from './views/setting';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 
 Vue.use(Router);
 
@@ -68,7 +70,12 @@ const router = new Router({
   ]
 });
 
+router.afterEach(() => {
+  NProgress.done();
+});
+
 router.beforeEach((to, from, next) => {
+  NProgress.start();
   const status = window.localStorage.getItem('status');
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (status === '1') {
