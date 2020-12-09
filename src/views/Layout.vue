@@ -33,7 +33,8 @@ export default {
   data() {
     return {
       isCollapse: isMobile,
-      user: {}
+      user: {},
+      isMobile
     }
   },
   created() {
