@@ -4,7 +4,7 @@
     <div class="page" :class="{'active': !isCollapse}" >
       <div class="topbar">
         <p>
-          <i @click="isCollapse = !isCollapse" class="sidebar-switch" :class="`el-icon-s-${isCollapse ? 'unfold' : 'fold' }`"></i>
+          <i @click="onToggleSidebar" class="sidebar-switch" :class="`el-icon-s-${isCollapse ? 'unfold' : 'fold' }`"></i>
         </p>
 
         <el-dropdown @command="handleCommand">
@@ -47,6 +47,12 @@ export default {
       window.localStorage.setItem('user', '');
       window.localStorage.setItem('status', '0');
       this.$router.replace('/login');
+    },
+    onToggleSidebar() {
+      if (this.isMobile) {
+        return this.$toast('移动端无法展开侧边栏!');
+      }
+      this.isCollapse = !this.isCollapse;
     },
     handleCommand(path) {
       this.$router.push({
