@@ -70,17 +70,6 @@ export default {
         }
     }
   },
-  mounted() {
-    this.initChart();
-     window.addEventListener('resize', this.resize, false)
-  },
-  beforeDestroy() {
-     window.removeEventListener('resize', this.resize, false)
-  },
-  methods: {
-    resize() {
-    },
-  }
 }
 </script>
 

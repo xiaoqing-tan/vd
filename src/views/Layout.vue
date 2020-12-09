@@ -51,7 +51,7 @@ export default {
     },
     onToggleSidebar() {
       if (this.isMobile) {
-        return this.$toast('移动端无法展开侧边栏!');
+        return this.$message('移动端无法展开侧边栏!');
       }
       this.isCollapse = !this.isCollapse;
     },
