@@ -25,49 +25,57 @@ const router = new Router({
       path: '/',
       component: Layout,
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
       },
       children: [
         {
           path: '',
           component: Home,
           meta: {
-            requiresAuth: true
+            requiresAuth: true,
+            title: '首页'
           }
         },
         {
           path: '/setting',
           component: Setting,
           meta: {
-            requiresAuth: true
+            requiresAuth: true,
+            title: '设置'
           }
         },
         {
           path: '/components/form',
           component: Form,
           meta: {
-            requiresAuth: true
+            requiresAuth: true,
+            title: '表单'
           }
         },
         {
           path: '/components/charts',
           component: Charts,
           meta: {
-            requiresAuth: true
+            requiresAuth: true,
+            title: '图表'
           }
         },
         {
           path: '/components/table',
           component: Table,
           meta: {
-            requiresAuth: true
+            requiresAuth: true,
+            title: '表格'
           }
         }
       ]
     },
     {
       path: '/login',
-      component: () => import('./views/login/index.vue')
+      component: () => import('./views/login/index.vue'),
+      meta: {
+        title: '登录'
+      }
     }
   ]
 });
@@ -91,6 +99,7 @@ router.beforeEach((to, from, next) => {
   } else {
     next();
   }
+  document.title = `${to.meta.title} - VD`;
 })
 
 export default router;
