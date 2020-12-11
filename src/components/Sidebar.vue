@@ -2,7 +2,7 @@
   <div class="sidebar" :class="{'is-close': isCollapse}">
     <h1><router-link to="/">{{ siteName }}</router-link></h1>
     <el-menu 
-      default-active="1-4-1" 
+      :default-active="defaultActive" 
       class="el-menu-vertical-demo" 
       @open="onOpen" 
       @close="onClose"
@@ -36,6 +36,9 @@ export default {
   computed: {
     siteName() {
       return this.isCollapse ? 'VD' : 'VUE DASHBOARD'
+    },
+    defaultActive() {
+      return this.$route.path
     }
   },
   data() {
