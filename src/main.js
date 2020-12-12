@@ -5,6 +5,7 @@ import './element-variables.scss';
 import './assets/normalize.css';
 import App from './App.vue';
 import router from './router';
+import store from './store'
 import VCharts from 'v-charts';
 
 Vue.use(VCharts);
@@ -16,4 +17,5 @@ Vue.use(ElementUI);
 new Vue({
   router,
   render: h => h(App),
+  store
 }).$mount('#app')

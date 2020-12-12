@@ -30,12 +30,15 @@ export default {
       }
     }
   },
+  created() {
+    this.$store.dispatch('setUserInfo', {});
+    window.localStorage.setItem('userInfo', null);
+  },
   methods: {
     onSubmit() {
       const { username, password } = this.form;
       if (username === 'admin' && password === 'Iamxiaoqing@0') {
-        window.localStorage.setItem('status', '1');
-        window.localStorage.setItem('user', JSON.stringify(this.form));
+        this.$store.dispatch('setUserInfo', {token: 'login:ok', ...this.form});
         this.$message.success('登录成功');
         this.$router.replace('/');
       } else {

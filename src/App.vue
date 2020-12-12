@@ -8,10 +8,15 @@
 
 export default {
   name: 'App',
+  computed: {
+    userInfo() {
+      return this.$store.state.userInfo;
+    }
+  },
   created() {
-    window.document.addEventListener('keydown', (event) => {
-      console.log(event)
-    })
+    window.addEventListener("beforeunload", () => {
+      window.localStorage.setItem("userInfo", JSON.stringify(this.userInfo));
+    });
   }
 }
 </script>

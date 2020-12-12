@@ -7,6 +7,7 @@ import Form from './views/components/form';
 import Table from './views/components/table';
 import Setting from './views/setting';
 import NProgress from 'nprogress';
+import store from './store';
 import 'nprogress/nprogress.css';
 
 NProgress.configure({ showSpinner: false });
@@ -86,15 +87,22 @@ router.afterEach(() => {
 
 router.beforeEach((to, from, next) => {
   NProgress.start();
-  const status = window.localStorage.getItem('status');
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (status === '1') {
-      next();
+    if (store.state.userInfo.token !== 'login:ok') {
+      const userInfo = JSON.parse(window.localStorage.getItem('userInfo') || '{}');
+      store.dispatch('setUserInfo', userInfo);
+      if (store.state.userInfo.token !== 'login:ok') {
+        next({
+          path: '/login',
+          query: { 
+            redirect: to.fullPath 
+          }
+        })
+      } else {
+        next();
+      }
     } else {
-      next({
-        path: '/login',
-        query: { redirect: to.fullPath }
-      })
+      next()
     }
   } else {
     next();
