@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -35,13 +37,14 @@ export default {
     window.localStorage.setItem('userInfo', null);
   },
   methods: {
-    onSubmit() {
+    async onSubmit() {
       const { username, password } = this.form;
-      if (username === 'admin' && password === 'Iamxiaoqing@0') {
-        this.$store.dispatch('setUserInfo', {token: 'login:ok', ...this.form});
+      try {
+        const { data: userInfo } = await axios.post('/api/login', { username, password });
+        this.$store.dispatch('setUserInfo', userInfo);
         this.$message.success('登录成功');
         this.$router.replace('/');
-      } else {
+      } catch (error) {
         this.$message.error('登录失败');
       }
     }
@@ -50,7 +53,6 @@ export default {
 </script>
 
 <style lang="less">
-
   .login  {
     height: 100vh;
     display: flex;

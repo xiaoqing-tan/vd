@@ -8,6 +8,8 @@ import router from './router';
 import store from './store'
 import VCharts from 'v-charts';
 
+require('./mock');
+
 Vue.use(VCharts);
 
 Vue.config.productionTip = false;
