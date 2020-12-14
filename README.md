@@ -21,4 +21,4 @@ yarn lint
 ```
 
 ### Customize configuration
-See [Vue Dashboard](https://tanxiaoqing.top/vd)...
+See [Vue Dashboard](https://tanxiaoqing.top/vd)
