@@ -1,14 +1,15 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Layout from './views/Layout';
-import Home from './views/Home';
-import Charts from './views/components/charts';
-import Form from './views/components/form';
-import Table from './views/components/table';
-import Setting from './views/setting';
-import NProgress from 'nprogress';
-import store from './store';
-import 'nprogress/nprogress.css';
+import Vue from "vue";
+import Router from "vue-router";
+import Layout from "./views/Layout";
+import Home from "./views/Home";
+import Charts from "./views/components/charts";
+import Form from "./views/components/form";
+import Table from "./views/components/table";
+import Setting from "./views/setting";
+import NProgress from "nprogress";
+import store from "./store";
+import { http } from "./utils/http";
+import "nprogress/nprogress.css";
 
 NProgress.configure({ showSpinner: false });
 
@@ -16,98 +17,106 @@ Vue.use(Router);
 
 const originalPush = Router.prototype.push;
 Router.prototype.push = function push(location, onResolve, onReject) {
-  if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject);
-  return originalPush.call(this, location).catch(err => err);
-}
+  if (onResolve || onReject)
+    return originalPush.call(this, location, onResolve, onReject);
+  return originalPush.call(this, location).catch((err) => err);
+};
 
 const router = new Router({
   routes: [
     {
-      path: '/',
+      path: "/",
       component: Layout,
       meta: {
         requiresAuth: true,
       },
       children: [
         {
-          path: '',
+          path: "",
           component: Home,
           meta: {
             requiresAuth: true,
-            title: '首页'
-          }
+            title: "首页",
+          },
         },
         {
-          path: '/setting',
+          path: "/setting",
           component: Setting,
           meta: {
             requiresAuth: true,
-            title: '设置'
-          }
+            title: "设置",
+          },
         },
         {
-          path: '/components/form',
+          path: "/components/form",
           component: Form,
           meta: {
             requiresAuth: true,
-            title: '表单'
-          }
+            title: "表单",
+          },
         },
         {
-          path: '/components/charts',
+          path: "/components/charts",
           component: Charts,
           meta: {
             requiresAuth: true,
-            title: '图表'
-          }
+            title: "图表",
+          },
         },
         {
-          path: '/components/table',
+          path: "/components/table",
           component: Table,
           meta: {
             requiresAuth: true,
-            title: '表格'
-          }
-        }
-      ]
+            title: "表格",
+          },
+        },
+      ],
     },
     {
-      path: '/login',
-      component: () => import('./views/login/index.vue'),
+      path: "/login",
+      component: () => import("./views/login/index.vue"),
       meta: {
-        title: '登录'
-      }
-    }
-  ]
+        title: "登录",
+      },
+    },
+  ],
 });
 
 router.afterEach(() => {
   NProgress.done();
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   NProgress.start();
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (store.state.userInfo.token !== 'login:ok') {
-      const userInfo = JSON.parse(window.localStorage.getItem('userInfo') || '{}');
-      store.dispatch('setUserInfo', userInfo);
-      if (store.state.userInfo.token !== 'login:ok') {
-        next({
-          path: '/login',
-          query: { 
-            redirect: to.fullPath 
-          }
-        })
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (store.state.menu.length) {
+      if (store.state.user.token !== "login:ok") {
+        const user = JSON.parse(window.localStorage.getItem("user") || "{}");
+        store.dispatch("setUserInfo", user);
+        if (store.state.user.token !== "login:ok") {
+          next({
+            path: "/login",
+            query: {
+              redirect: to.fullPath,
+            },
+          });
+        } else {
+          next();
+        }
       } else {
         next();
       }
     } else {
-      next()
+      const { user, menu } = await http.get("/login/index");
+      store.dispatch("setMenu", menu);
+      store.dispatch("setUserInfo", user);
+      next();
     }
   } else {
     next();
   }
   document.title = `${to.meta.title} - VD`;
-})
+});
 
 export default router;

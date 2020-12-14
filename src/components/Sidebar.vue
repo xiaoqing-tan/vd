@@ -16,7 +16,7 @@
         <i class="el-icon-s-home"></i>
         <span slot="title">首页</span>
       </el-menu-item>
-      <el-submenu v-for="item in menus" :key="item.path" :index="item.path">
+      <el-submenu v-for="item in menu" :key="item.path" :index="item.path">
         <template slot="title">
           <i :class="item.icon"></i>
           <span slot="title">{{item.name}}</span>
@@ -39,46 +39,9 @@ export default {
     },
     defaultActive() {
       return this.$route.path
-    }
-  },
-  data() {
-    return {
-      menus: [
-        {
-          name: '组件',
-          icon: 'el-icon-coin',
-          path: '/components',
-          children: [
-            {
-              name: '表单',
-              icon: 'el-icon-bank-card',
-              path: '/components/form'
-            },
-            {
-              name: '图表',
-              icon: 'el-icon-pie-chart',
-              path: '/components/charts'
-            },
-            {
-              name: '表格',
-              icon: 'el-icon-s-grid',
-              path: '/components/table'
-            }
-          ]
-        },
-        {
-          name: '设置',
-          icon: 'el-icon-setting',
-          path: '/setting',
-          children: [
-            {
-              name: '个人信息',
-              icon: 'setting',
-              path: '/setting'
-            },
-          ]
-        }
-      ]
+    },
+    menu() {
+      return this.$store.state.menu;
     }
   },
   props: {

@@ -33,12 +33,13 @@ export default {
   data() {
     return {
       isCollapse: isMobile,
-      user: {},
       isMobile
     }
   },
-  created() {
-    this.user = JSON.parse(window.localStorage.getItem('user') || '{}');
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
   },
   components: {
     Sidebar

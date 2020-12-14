@@ -7,10 +7,12 @@ import App from './App.vue';
 import router from './router';
 import store from './store'
 import VCharts from 'v-charts';
+import prototype from './utils/prototype';
 
 require('./mock');
 
 Vue.use(VCharts);
+Vue.use(prototype);
 
 Vue.config.productionTip = false;
 

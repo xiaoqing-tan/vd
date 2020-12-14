@@ -1,6 +1,9 @@
 const mutations = {
   SET_USER_INFO(state, data) {
-    state.userInfo = data;
+    state.user = data;
+  },
+  SET_MENU(state, data) {
+    state.menu = data;
   }
 };
 

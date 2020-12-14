@@ -1,6 +1,9 @@
 const actions = {
-  setUserInfo ({ commit }, userInfo) {
-    commit('SET_USER_INFO', userInfo);
+  setUserInfo ({ commit }, user) {
+    commit('SET_USER_INFO', user);
+  },
+  setMenu ({ commit }, menu) {
+    commit('SET_MENU', menu);
   }
 };
 

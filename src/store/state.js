@@ -1,5 +1,6 @@
 const state = {
-  userInfo: { }
+  user: {},
+  menu: []
 };
 
 export default state;

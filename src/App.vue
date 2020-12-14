@@ -9,13 +9,13 @@
 export default {
   name: 'App',
   computed: {
-    userInfo() {
-      return this.$store.state.userInfo;
+    user() {
+      return this.$store.state.user;
     }
   },
   created() {
     window.addEventListener("beforeunload", () => {
-      window.localStorage.setItem("userInfo", JSON.stringify(this.userInfo));
+      window.localStorage.setItem("user", JSON.stringify(this.user));
     });
   }
 }
