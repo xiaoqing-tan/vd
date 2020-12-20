@@ -6,22 +6,18 @@
         <el-table
           border
           stripe
+          v-loading="loading"
           size="medium"
           :data="tableData"
           style="width: 100%; border-radius: 5px;">
-          <el-table-column
-            prop="date"
-            label="日期"
-            width="180">
-          </el-table-column>
-          <el-table-column
-            prop="name"
-            label="姓名"
-            width="180">
-          </el-table-column>
-          <el-table-column
-            prop="address"
-            label="地址">
+          <el-table-column 
+            v-for="item in config.columns" 
+            :key="item.prop" 
+            :prop="item.prop" 
+            :label="item.label"
+            :width="item.width"
+            :formatter="item.formatter"
+            >
           </el-table-column>
         </el-table>
       </div>
@@ -42,6 +38,24 @@
 export default {
   data() {
     return {
+      config: {
+        columns: [{
+          label: '地址',
+          prop: 'address',
+        },
+        {
+          label: '姓名',
+          prop: 'name',
+        },
+        {
+          label: '地址',
+          prop: 'date',
+        },
+        {
+          label: '操作',
+          prop: 'action',
+        }]
+      },
       tableData: [{
         date: '2016-05-02',
         name: '王小虎',
@@ -58,8 +72,14 @@ export default {
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
-      }]
+      }],
+      loading: false
     }
+  },
+  async created() {
+    this.loading = true;
+    await this.$sleep(1000);
+    this.loading = false;
   },
   methods: {
     handleCurrentChange(val) {

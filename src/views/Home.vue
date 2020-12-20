@@ -1,5 +1,11 @@
 <template>
   <div class="home">
+  <el-alert
+    title="警告提示的文案"
+    type="warning"
+    description="文字说明文字说明文字说明文字说明文字说明文字说明"
+    show-icon>
+  </el-alert>
     <h2>概览</h2>
     <div class="summary">
         <el-row :gutter="20">
@@ -89,7 +95,7 @@ export default {
       border-radius: 4px;
       margin-bottom: 20px;
       &:hover {
-        background-color: #f9f9f9 ;
+        // background-color: #f5f5f5 ;
         transition: all .3s ease;
       }
       p {

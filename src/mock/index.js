@@ -27,17 +27,21 @@ const login = {
           name: '表格',
           icon: 'el-icon-s-grid',
           path: '/components/table'
+        }, {
+          name: '图标',
+          icon: 'el-icon-picture-outline',
+          path: '/components/icons'
         }
       ]
     },
     {
       name: '设置',
-      icon: 'el-icon-setting',
+      icon: 'el-icon-s-tools',
       path: '/setting',
       children: [
         {
           name: '个人信息',
-          icon: 'setting',
+          icon: 'el-icon-user-solid',
           path: '/setting'
         },
       ]

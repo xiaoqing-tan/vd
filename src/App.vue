@@ -48,7 +48,7 @@ export default {
   background-color: rgba(#101F1C, 1);
 }
 body {
-  background-color: #f5f5f5;
+  background-color: #f9f9f9;
 }
 #app {
   -webkit-font-smoothing: antialiased;

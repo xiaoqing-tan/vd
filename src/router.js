@@ -5,6 +5,7 @@ import Home from "./views/Home";
 import Charts from "./views/components/charts";
 import Form from "./views/components/form";
 import Table from "./views/components/table";
+import Icons from "./views/components/icons";
 import Setting from "./views/setting";
 import NProgress from "nprogress";
 import store from "./store";
@@ -69,6 +70,14 @@ const router = new Router({
           meta: {
             requiresAuth: true,
             title: "表格",
+          },
+        },
+        {
+          path: "/components/icons",
+          component: Icons,
+          meta: {
+            requiresAuth: true,
+            title: "图标",
           },
         },
       ],

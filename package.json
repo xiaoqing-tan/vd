@@ -21,6 +21,7 @@
     "path": "^0.12.7",
     "sass": "^1.29.0",
     "sass-loader": "^10.1.0",
+    "svg-sprite-loader": "^5.2.1",
     "v-charts": "^1.19.0",
     "vh-check": "^2.0.5",
     "vue": "^2.6.11",
