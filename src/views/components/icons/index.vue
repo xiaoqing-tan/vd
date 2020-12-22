@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="block">
-      <h1>From</h1>  
+      <h2>From</h2>  
     </div>
   </div>
 </template>

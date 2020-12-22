@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="block">
-      <h1>Charts</h1>  
+      <h2>Charts</h2>  
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  
+
 }
 </script>
 
