@@ -6,7 +6,6 @@
         <p>
           <i @click="onToggleSidebar" class="sidebar-switch" :class="`el-icon-s-${isCollapse ? 'unfold' : 'fold' }`"></i>
         </p>
-
         <el-dropdown @command="handleCommand">
           <span class="el-dropdown-link">
             {{user.username}} <i class="el-icon-arrow-down el-icon--right"></i>
@@ -16,10 +15,9 @@
             <el-dropdown-item command="/login">退出</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-
       </div>
       <transition name="slide-fade">
-      <router-view class="view" />
+        <router-view class="view" />
       </transition>
     </div>
   </div>

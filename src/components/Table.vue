@@ -19,7 +19,7 @@
         >
           <template slot-scope="scope">
             <slot v-if="item.slot" :name="item.prop" :row='scope.row'></slot>
-            <span v-else>{{ scope.row[item.prop] }}</span>
+            <span v-else>{{ item.formatter ? item.formatter(scope.row, item) : scope.row[item.prop] }}</span>
           </template>
         </el-table-column>
       </el-table>
@@ -60,10 +60,11 @@ export default {
 .vd-table {
   &__action {
     display: inline;
-    a {
+    span {
       color: rgb(2, 125, 240);
       text-decoration: none;
-      margin: 0 5px;
+      margin: 0 3px;
+      cursor: pointer;
       &:hover {
         text-decoration: underline;
       }

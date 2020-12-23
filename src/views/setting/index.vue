@@ -1,7 +1,8 @@
 <template>
   <div>
+    <vd-breadcrumb />
     <div class="block">
-      <h1>Setting</h1>  
+      <h2>Setting</h2>  
     </div>
   </div>
 </template>

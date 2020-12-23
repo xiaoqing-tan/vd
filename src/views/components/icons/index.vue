@@ -1,7 +1,8 @@
 <template>
   <div>
+    <vd-breadcrumb />
     <div class="block">
-      <h2>From</h2>  
+      <h2>图标</h2>  
     </div>
   </div>
 </template>
