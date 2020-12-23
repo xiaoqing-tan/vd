@@ -11,7 +11,7 @@
         <p class="vd-input-element"><input v-model="form.password" type="password" /></p>
       </div>
       <div class="vd-item vd-no-label">
-        <el-button @click="onSubmit" round type="primary">确定</el-button>
+        <el-button @click="onSubmit" round :loading="loading" type="primary">确定</el-button>
         <el-button round type="info">取消</el-button>
         <!-- <button @click="onSubmit" class="vd-button">确定</button> -->
         <!-- <button class="vd-button vd-cancel">取消</button> -->
@@ -27,7 +27,8 @@ export default {
       form: {
         username: '',
         password: ''
-      }
+      },
+      loading: false
     }
   },
   created() {
@@ -37,15 +38,18 @@ export default {
   methods: {
     async onSubmit() {
       const { username, password } = this.form;
+      this.loading = true;
+      await this.$sleep(500);
       try {
         const { user, menu } = await this.$http.post('/login', { username, password });
-        console.log(menu)
         this.$store.dispatch('setUserInfo', user);
         this.$store.dispatch('setMenu', menu);
         this.$message.success('登录成功');
         this.$router.replace('/');
       } catch (error) {
         this.$message.error('登录失败');
+      } finally {
+        this.loading = false;
       }
     }
   }

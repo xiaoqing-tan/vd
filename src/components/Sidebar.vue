@@ -84,7 +84,7 @@ export default {
       }
     }
   }
-  .el-menu {
+  &>.el-menu {
     border-right: 0 none;
     height: calc(100% - 50px);
     overflow-y: auto;
