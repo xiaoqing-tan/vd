@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import Sidebar from './../components/Sidebar';
+import Sidebar from '@/components/Sidebar';
 const isMobile = /(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent);
 
 export default {
@@ -36,7 +36,8 @@ export default {
   },
   computed: {
     user() {
-      return this.$store.state.user;
+      const { userData: { user } } = this.$store.state;
+      return user;
     }
   },
   components: {
@@ -44,8 +45,6 @@ export default {
   },
   methods: {
     onLogout() {
-      window.localStorage.setItem('user', '');
-      window.localStorage.setItem('status', '0');
       this.$router.replace('/login');
     },
     onToggleSidebar() {

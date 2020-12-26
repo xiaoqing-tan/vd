@@ -1,6 +1,6 @@
 // 全局组件注册
-import Table from './../components/Table.vue';
-import Breadcrumb from './../components/Breadcrumb.vue';
+import Table from '@/components/Table.vue';
+import Breadcrumb from '@/components/Breadcrumb.vue';
 
 
 const Prototype = function() {};

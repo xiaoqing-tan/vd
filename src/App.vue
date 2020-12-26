@@ -8,16 +8,6 @@
 
 export default {
   name: 'App',
-  computed: {
-    user() {
-      return this.$store.state.user;
-    }
-  },
-  created() {
-    window.addEventListener("beforeunload", () => {
-      window.localStorage.setItem("user", JSON.stringify(this.user));
-    });
-  }
 }
 </script>
 

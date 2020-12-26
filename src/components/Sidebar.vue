@@ -41,7 +41,8 @@ export default {
       return this.$route.path
     },
     menu() {
-      return this.$store.state.menu;
+      const { userData: { menu } } = this.$store.state;
+      return menu;
     }
   },
   props: {

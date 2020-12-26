@@ -1,6 +1,14 @@
+import { storage } from '@/utils';
+import setting from '@/config';
+
+const { user = {}, menu = [] } = storage.get('userData');
+
 const state = {
-  user: {},
-  menu: []
+  userData: {
+    user,
+    menu
+  },
+  setting
 };
 
 export default state;

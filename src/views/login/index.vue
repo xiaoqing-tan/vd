@@ -31,19 +31,12 @@ export default {
       loading: false
     }
   },
-  created() {
-    this.$store.dispatch('setUserInfo', {});
-    window.localStorage.setItem('user', null);
-  },
   methods: {
     async onSubmit() {
-      const { username, password } = this.form;
       this.loading = true;
       await this.$sleep(500);
       try {
-        const { user, menu } = await this.$http.post('/login', { username, password });
-        this.$store.dispatch('setUserInfo', user);
-        this.$store.dispatch('setMenu', menu);
+        await this.$store.dispatch('userLogin', this.form);
         this.$message.success('登录成功');
         this.$router.replace('/');
       } catch (error) {

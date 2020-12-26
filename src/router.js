@@ -1,18 +1,19 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Layout from "./views/Layout";
-import Home from "./views/Home";
-import Charts from "./views/components/charts";
-import Form from "./views/components/form";
-import Table from "./views/components/table";
-import Icons from "./views/components/icons";
-import Setting from "./views/setting";
+import Layout from "@/views/Layout";
+import Home from "@/views/Home";
+import Charts from "@/views/components/charts";
+import Form from "@/views/components/form";
+import Table from "@/views/components/table";
+import Icons from "@/views/components/icons";
+import Setting from "@/views/setting";
 import NProgress from "nprogress";
-import store from "./store";
-import { http } from "./utils/http";
+import store from "@/store";
 import "nprogress/nprogress.css";
 
-NProgress.configure({ showSpinner: false });
+NProgress.configure({ 
+  showSpinner: false 
+});
 
 Vue.use(Router);
 
@@ -97,29 +98,17 @@ router.afterEach(() => {
 });
 
 router.beforeEach(async (to, from, next) => {
+  const { userData: { user } } = store.state;
   NProgress.start();
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    if (store.state.menu.length) {
-      if (store.state.user.token !== "login:ok") {
-        const user = JSON.parse(window.localStorage.getItem("user") || "{}");
-        store.dispatch("setUserInfo", user);
-        if (store.state.user.token !== "login:ok") {
-          next({
-            path: "/login",
-            query: {
-              redirect: to.fullPath,
-            },
-          });
-        } else {
-          next();
-        }
-      } else {
-        next();
-      }
+    if (user.token !== "login:ok") {
+      next({
+        path: "/login",
+        query: {
+          redirect: to.fullPath,
+        },
+      });
     } else {
-      const { user, menu } = await http.get("/login/index");
-      store.dispatch("setMenu", menu);
-      store.dispatch("setUserInfo", user);
       next();
     }
   } else {

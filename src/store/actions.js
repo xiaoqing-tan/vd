@@ -1,9 +1,16 @@
+
+import { userLogin } from '@/api';
+import { storage } from '@/utils';
+
 const actions = {
-  setUserInfo ({ commit }, user) {
-    commit('SET_USER_INFO', user);
+  async userLogin ({ commit }, params) {
+    const userData = await userLogin(params);
+    storage.set('userData', userData);
+    commit('SET_USER_DATA', userData);
   },
-  setMenu ({ commit }, menu) {
-    commit('SET_MENU', menu);
+  async getUserData({ commit }) {
+    const userData = storage.get('userData');
+    commit('SET_USER_DATA', userData);
   }
 };
 

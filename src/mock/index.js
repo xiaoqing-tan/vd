@@ -12,16 +12,19 @@ const login = {
       name: '组件',
       icon: 'el-icon-coin',
       path: '/components',
+      component: 'components',
       children: [
         {
           name: '表单',
           icon: 'el-icon-bank-card',
-          path: '/components/form'
+          path: '/components/form',
+          component: 'components/form',
         },
         {
           name: '图表',
           icon: 'el-icon-pie-chart',
-          path: '/components/charts'
+          path: '/components/charts',
+          component: 'components/charts',
         },
         {
           name: '表格',
@@ -30,7 +33,8 @@ const login = {
         }, {
           name: '图标',
           icon: 'el-icon-picture-outline',
-          path: '/components/icons'
+          path: '/components/icons',
+          component: 'components/icons',
         }
       ]
     },
@@ -38,11 +42,13 @@ const login = {
       name: '设置',
       icon: 'el-icon-s-tools',
       path: '/setting',
+      component: 'setting',
       children: [
         {
           name: '个人信息',
           icon: 'el-icon-user-solid',
-          path: '/setting'
+          path: '/setting',
+          component: 'setting',
         },
       ]
     }
