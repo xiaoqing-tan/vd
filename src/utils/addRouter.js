@@ -4,14 +4,13 @@
  * @returns
  */
 export function addRouter(routerlist) {
-  console.log(routerlist)
   const router = []
   try {
     routerlist.forEach(e => {
       let e_new = {
         path: e.path,
         name: e.name,
-        component: import(`@/views/${e.component}/index`)
+        component: () => e.component === 'layout' ? import('@/views/Layout.vue') : import(`@/views/${e.component}`)
       }
       if (e.children) {
         const children = addRouter(e.children)
@@ -24,12 +23,5 @@ export function addRouter(routerlist) {
     console.error(error)
     return []
   }
-  return {
-    path: "/",
-    component: import('@/views/Layout.vue'),
-    meta: {
-      requiresAuth: true,
-    },
-    children: router
-  }
+  return router
 }

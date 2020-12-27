@@ -1,18 +1,13 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Layout from "@/views/Layout";
-import Home from "@/views/Home";
-import Charts from "@/views/components/charts";
-import Form from "@/views/components/form";
-import Table from "@/views/components/table";
-import Icons from "@/views/components/icons";
-import Setting from "@/views/setting";
 import NProgress from "nprogress";
 import store from "@/store";
+import { addRouter } from "@/utils/addRouter";
+import { getMenu } from "@/api";
 import "nprogress/nprogress.css";
 
-NProgress.configure({ 
-  showSpinner: false 
+NProgress.configure({
+  showSpinner: false,
 });
 
 Vue.use(Router);
@@ -27,63 +22,6 @@ Router.prototype.push = function push(location, onResolve, onReject) {
 const router = new Router({
   routes: [
     {
-      path: "/",
-      component: Layout,
-      meta: {
-        requiresAuth: true,
-      },
-      children: [
-        {
-          path: "",
-          component: Home,
-          meta: {
-            requiresAuth: true,
-            title: "首页",
-          },
-        },
-        {
-          path: "/setting",
-          component: Setting,
-          meta: {
-            requiresAuth: true,
-            title: "设置",
-          },
-        },
-        {
-          path: "/components/form",
-          component: Form,
-          meta: {
-            requiresAuth: true,
-            title: "表单",
-          },
-        },
-        {
-          path: "/components/charts",
-          component: Charts,
-          meta: {
-            requiresAuth: true,
-            title: "图表",
-          },
-        },
-        {
-          path: "/components/table",
-          component: Table,
-          meta: {
-            requiresAuth: true,
-            title: "表格",
-          },
-        },
-        {
-          path: "/components/icons",
-          component: Icons,
-          meta: {
-            requiresAuth: true,
-            title: "图标",
-          },
-        },
-      ],
-    },
-    {
       path: "/login",
       component: () => import("./views/login/index.vue"),
       meta: {
@@ -97,23 +35,40 @@ router.afterEach(() => {
   NProgress.done();
 });
 
+const whiteList = ["/login"];
+
 router.beforeEach(async (to, from, next) => {
-  const { userData: { user } } = store.state;
+  const { userData, menu } = store.state;
   NProgress.start();
-  if (to.matched.some((record) => record.meta.requiresAuth)) {
-    if (user.token !== "login:ok") {
-      next({
-        path: "/login",
-        query: {
-          redirect: to.fullPath,
-        },
-      });
-    } else {
+  if (userData.token === "login:ok") {
+    if (menu.length) {
       next();
+    } else {
+      const menu = await getMenu();
+      router.addRoutes(addRouter(menu));
+      store.dispatch("setMenu", menu);
+      next({ ...to, replace: true }); 
     }
   } else {
-    next();
+    if (whiteList.indexOf(to.path) !== -1) {
+      next();
+    } else {
+      if (to.path !== "/login") {
+        next({
+          path: "/login",
+          query: {
+            redirect: to.fullPath,
+          },
+        });
+      } else {
+        next();
+      }
+    }
   }
+  // if (to.matched.some((record) => record.meta.requiresAuth)) {
+  // } else {
+  //   next();
+  // }
   document.title = `${to.meta.title} - VD`;
 });
 

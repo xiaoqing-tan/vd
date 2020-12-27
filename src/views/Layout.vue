@@ -8,7 +8,7 @@
         </p>
         <el-dropdown @command="handleCommand">
           <span class="el-dropdown-link">
-            {{user.username}} <i class="el-icon-arrow-down el-icon--right"></i>
+            {{userData.username}} <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item command="/setting">个人信息</el-dropdown-item>
@@ -35,9 +35,9 @@ export default {
     }
   },
   computed: {
-    user() {
-      const { userData: { user } } = this.$store.state;
-      return user;
+    userData() {
+      const { userData } = this.$store.state;
+      return userData;
     }
   },
   components: {

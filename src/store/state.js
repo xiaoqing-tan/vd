@@ -1,13 +1,11 @@
 import { storage } from '@/utils';
 import setting from '@/config';
 
-const { user = {}, menu = [] } = storage.get('userData');
-
+const userData = storage.get('userData') || {};
+const menu = [];
 const state = {
-  userData: {
-    user,
-    menu
-  },
+  userData,
+  menu,
   setting
 };
 

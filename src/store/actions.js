@@ -8,6 +8,10 @@ const actions = {
     storage.set('userData', userData);
     commit('SET_USER_DATA', userData);
   },
+  async setMenu ({ commit }, params) {
+    storage.set('menu', params);
+    commit('SET_MENU', params);
+  },
   async getUserData({ commit }) {
     const userData = storage.get('userData');
     commit('SET_USER_DATA', userData);

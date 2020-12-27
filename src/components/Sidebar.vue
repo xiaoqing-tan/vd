@@ -12,10 +12,10 @@
       router
       :collapse-transition="false"
       :collapse="isCollapse">
-      <el-menu-item index="/">
+      <!-- <el-menu-item index="/">
         <i class="el-icon-s-home"></i>
         <span slot="title">首页</span>
-      </el-menu-item>
+      </el-menu-item> -->
       <el-submenu v-for="item in menu" :key="item.path" :index="item.path">
         <template slot="title">
           <i :class="item.icon"></i>
@@ -41,8 +41,8 @@ export default {
       return this.$route.path
     },
     menu() {
-      const { userData: { menu } } = this.$store.state;
-      return menu;
+      const { menu } = this.$store.state;
+      return menu[0].children;
     }
   },
   props: {
