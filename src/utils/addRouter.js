@@ -10,6 +10,9 @@ export function addRouter(routerlist) {
       let e_new = {
         path: e.path,
         name: e.name,
+        meta: {
+          title: e.name,
+        },
         component: () => e.component === 'layout' ? import('@/views/Layout.vue') : import(`@/views/${e.component}`)
       }
       if (e.children) {
