@@ -32,8 +32,9 @@ const router = new Router({
 });
 
 router.afterEach((to) => {
+  const { config } = store.state;
   NProgress.done();
-  document.title = `${to.meta.title} - VD`;
+  document.title = `${to.meta.title} - ${config.name}`;
 });
 
 const whiteList = ["/login"];
@@ -48,7 +49,6 @@ router.beforeEach(async (to, from, next) => {
       const menu = await getMenu();
       router.addRoutes(addRouter(menu));
       store.dispatch("setMenu", menu);
-      console.log(to)
       next({ ...to, replace: true }); 
     }
   } else {

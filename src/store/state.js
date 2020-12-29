@@ -1,12 +1,12 @@
 import { storage } from '@/utils';
-import setting from '@/config';
+import config from '@/config';
 
 const userData = storage.get('userData') || {};
 const menu = [];
 const state = {
   userData,
   menu,
-  setting
+  config
 };
 
 export default state;

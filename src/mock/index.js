@@ -9,7 +9,6 @@ const login = {
 
 const menu = [
   {
-    name: "layout",
     component: "layout",
     path: '/',
     children: [
@@ -18,6 +17,7 @@ const menu = [
         icon: "el-icon-s-home",
         path: "",
         component: "home",
+        type: 'top'
       },
       {
         name: "组件",
