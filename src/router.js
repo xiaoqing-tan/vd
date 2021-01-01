@@ -40,10 +40,10 @@ router.afterEach((to) => {
 const whiteList = ["/login"];
 
 router.beforeEach(async (to, from, next) => {
-  const { userData, menu } = store.state;
+  const { userData: { auth, init } } = store.state;
   NProgress.start();
-  if (userData.token === "login:ok") {
-    if (menu.length) {
+  if (auth.token === "login:ok") {
+    if (init) {
       next();
     } else {
       const menu = await getMenu();

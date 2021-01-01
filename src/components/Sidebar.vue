@@ -47,7 +47,7 @@ export default {
       return this.$route.path
     },
     menu() {
-      const { menu } = this.$store.state;
+      const { userData: { menu } } = this.$store.state;
       const top = menu[0].children.filter(i => !i.children && i.type === 'top');
       const main = menu[0].children.filter(i => i.children);
       const bottom = menu[0].children.filter(i => !i.children && i.type === 'bottom');

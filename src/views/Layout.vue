@@ -25,19 +25,24 @@
 
 <script>
 import Sidebar from '@/components/Sidebar';
-const isMobile = /(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent);
 
 export default {
   data() {
     return {
-      isCollapse: isMobile,
-      isMobile
+      isCollapse: true
     }
+  },
+  created() {
+    this.isCollapse = this.isMobile;
   },
   computed: {
     userData() {
       const { userData } = this.$store.state;
       return userData;
+    },
+    isMobile() {
+      const { config: { isMobile } } = this.$store.state;
+      return isMobile;
     }
   },
   components: {

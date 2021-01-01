@@ -1,11 +1,13 @@
 import { storage } from '@/utils';
 import config from '@/config';
 
-const userData = storage.get('userData') || {};
-const menu = [];
+const { auth = {}, init = false, menu = [] } = storage.get('userData') || {};
 const state = {
-  userData,
-  menu,
+  userData: {
+    auth,
+    init,
+    menu
+  },
   config
 };
 

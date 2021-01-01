@@ -33,12 +33,15 @@ export default {
   },
   methods: {
     async onSubmit() {
+      const { query: { redirect } } = this.$route;
       this.loading = true;
       await this.$sleep(500);
       try {
         await this.$store.dispatch('userLogin', this.form);
         this.$message.success('登录成功');
-        this.$router.replace('/');
+        this.$router.push({
+          path: redirect || '/'
+        });
       } catch (error) {
         this.$message.error('登录失败');
       } finally {

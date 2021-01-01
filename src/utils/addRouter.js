@@ -1,30 +1,34 @@
 /**
  * 生成路由
- * @param {Array} routerlist 格式化路由
+ * @param {Array} list 格式化路由
  * @returns
  */
-export function addRouter(routerlist) {
-  const router = []
+export function addRouter(list) {
+  const router = [];
   try {
-    routerlist.forEach(e => {
-      let e_new = {
-        path: e.path,
-        name: e.name,
+    list.forEach(({ name, path, component, children }) => {
+      let item = {
+        path,
+        name,
         meta: {
-          title: e.name,
+          title: name,
         },
-        component: () => e.component === 'layout' ? import('@/views/Layout.vue') : import(`@/views/${e.component}`)
+        component: () =>
+          component === "layout"
+            ? import("@/views/Layout.vue")
+            : import(`@/views/${component}`),
+      };
+      if (children) {
+        item = {
+          ...item,
+          children: addRouter(children),
+        };
       }
-      if (e.children) {
-        const children = addRouter(e.children)
-        // 保存权限
-        e_new = { ...e_new, children: children }
-      }
-      router.push(e_new)
-    })
+      router.push(item);
+    });
   } catch (error) {
-    console.error(error)
-    return []
+    console.error(error);
+    return [];
   }
-  return router
+  return router;
 }
