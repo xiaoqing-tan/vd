@@ -7,7 +7,7 @@ const login = {
   token: "login:ok",
 };
 
-const menu = [
+const menu1 = [
   {
     component: "layout",
     path: '/',
@@ -60,8 +60,14 @@ const menu = [
           {
             name: "个人信息",
             icon: "el-icon-user-solid",
-            path: "/setting",
-            component: "setting",
+            path: "/setting/user",
+            component: "setting/user",
+          },
+          {
+            name: "角色",
+            icon: "el-icon-s-operation",
+            path: "/setting/role",
+            component: "setting/role",
           },
         ],
       },
@@ -69,5 +75,43 @@ const menu = [
   },
 ];
 
-Mock.mock("/api/menu", "get", menu);
+
+const menu2 = [
+  {
+    component: "layout",
+    path: '/',
+    children: [
+      {
+        name: "首页",
+        icon: "el-icon-s-home",
+        path: "",
+        component: "home",
+        type: 'top'
+      },
+      {
+        name: "设置",
+        icon: "el-icon-s-tools",
+        path: "/setting",
+        component: "setting",
+        children: [
+          {
+            name: "个人信息",
+            icon: "el-icon-user-solid",
+            path: "/setting/user",
+            component: "setting/user",
+          },
+          {
+            name: "角色",
+            icon: "el-icon-s-operation",
+            path: "/setting/role",
+            component: "setting/role",
+          },
+        ],
+      },
+    ],
+  },
+];
+
+Mock.mock("/api/menu?role=1", "get", menu1);
+Mock.mock("/api/menu?role=2", "get", menu2);
 Mock.mock("/api/login", "post", login);

@@ -10,13 +10,15 @@
 <script>
 export default {
   created() {
-    console.log()
+    console.log(this.menu)
   },
   computed: {
-    // breadcrumb() {
-    //   const { menu } = this.$store.state;
-    //   const { path } = this.$route;
-    //   return 1
+    menu() {
+      return this.$store.state.userData.menu;
+    },
+    // arrs() {
+    //   const { menu } = this.$store.state.userData;
+    //   const arrs = [];
     // }
   }
 }

@@ -40,13 +40,13 @@ router.afterEach((to) => {
 const whiteList = ["/login"];
 
 router.beforeEach(async (to, from, next) => {
-  const { userData: { auth, init } } = store.state;
+  const { userData: { auth, init, role } } = store.state;
   NProgress.start();
   if (auth.token === "login:ok") {
     if (init) {
       next();
     } else {
-      const menu = await getMenu();
+      const menu = await getMenu({ role });
       router.addRoutes(addRouter(menu));
       store.dispatch("setMenu", menu);
       next({ ...to, replace: true }); 

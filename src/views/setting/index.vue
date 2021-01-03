@@ -1,18 +1,3 @@
 <template>
-  <div>
-    <vd-breadcrumb />
-    <div class="block">
-      <h2>Setting</h2>  
-    </div>
-  </div>
+  <router-view />  
 </template>
-
-<script>
-export default {
-  
-}
-</script>
-
-<style lang="less">
-
-</style>
