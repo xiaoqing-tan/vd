@@ -4,11 +4,11 @@
       <h1>Vue Dashboard</h1>
       <div class="vd-item">
         <p class="vd-label">用户名</p>
-        <p class="vd-input-element"><input v-model="form.username" type="text" /></p>
+        <p class="vd-input-element"><el-input v-model="form.username" type="text" /></p>
       </div>
       <div class="vd-item">
         <p class="vd-label">密码</p>
-        <p class="vd-input-element"><input v-model="form.password" type="password" /></p>
+        <p class="vd-input-element"><el-input v-model="form.password" type="password" /></p>
       </div>
       <div class="vd-item vd-no-label">
         <el-button @click="onSubmit" round :loading="loading" type="primary">确定</el-button>
