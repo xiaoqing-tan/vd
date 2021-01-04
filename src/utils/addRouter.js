@@ -6,7 +6,7 @@
 export function addRouter(list) {
   const router = [];
   try {
-    list.forEach(({ name, path, component, children }) => {
+    list.forEach(({ name, path, component, children, redirect }) => {
       let item = {
         path,
         name,
@@ -18,6 +18,9 @@ export function addRouter(list) {
             ? import("@/views/Layout.vue")
             : import(`@/views/${component}`),
       };
+      if (redirect) {
+        item = { ...item, redirect };
+      }
       if (children) {
         item = {
           ...item,

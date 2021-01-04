@@ -24,6 +24,7 @@ const menu1 = [
         icon: "el-icon-coin",
         path: "/components",
         component: "components",
+        redirect: 'setting/user',
         children: [
           {
             name: "表单",
@@ -56,6 +57,7 @@ const menu1 = [
         icon: "el-icon-s-tools",
         path: "/setting",
         component: "setting",
+        redirect: 'setting/user',
         children: [
           {
             name: "个人信息",
