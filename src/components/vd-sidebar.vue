@@ -38,7 +38,7 @@
 
 <script>
 export default {
-  name: 'Sidebar',
+  name: 'vd-sidebar',
   computed: {
     siteName() {
       return this.isCollapse ? 'VD' : 'VUE DASHBOARD'

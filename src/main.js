@@ -8,13 +8,13 @@ import router from '@/router';
 import store from '@/store'
 import VCharts from 'v-charts';
 import prototype from '@/utils/prototype';
-import components from '@/utils/components';
+import '@/components/index';
 
 require('./mock');
 
 Vue.use(VCharts);
 Vue.use(prototype);
-Vue.use(components);
+// Vue.use(components);
 
 Vue.config.productionTip = false;
 

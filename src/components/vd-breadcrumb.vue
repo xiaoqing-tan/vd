@@ -9,6 +9,7 @@
 
 <script>
 export default {
+  name: 'vd-breadcrumb',
   computed: {
     menu() {
       const { matched } = this.$route;

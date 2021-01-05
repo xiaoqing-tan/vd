@@ -38,6 +38,7 @@
 
 <script>
 export default {
+  name: 'vd-table',
   props: {
     config: {
       type: Object,

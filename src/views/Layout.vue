@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <Sidebar :isCollapse="isCollapse" />
+    <vd-sidebar :isCollapse="isCollapse" />
     <div class="page" :class="{'active': !isCollapse}" >
       <div class="topbar">
         <p>
@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import Sidebar from '@/components/Sidebar';
 
 export default {
   data() {
@@ -44,9 +43,6 @@ export default {
       const { config: { isMobile } } = this.$store.state;
       return isMobile;
     }
-  },
-  components: {
-    Sidebar
   },
   methods: {
     onLogout() {
