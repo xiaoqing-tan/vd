@@ -3,7 +3,7 @@
     <vd-breadcrumb />
     <div class="block">
       <h2>表格</h2>
-      <vd-table :loading="loading" :config="config">
+      <vd-table :loading="loading" v-on:load-data="loadData" :config="config">
         <template slot-scope="scope" slot="action">
           <div class="vd-table__action">
             <span @click="onEdit(scope)">编辑</span>
@@ -101,6 +101,12 @@ export default {
       await this.$sleep(200);
       this.loading = false;
     },
+    async loadData(val) {
+      console.log(`第 ${val} 页`);
+      this.loading = true;
+      await this.$sleep(200);
+      this.loading = false;
+    }
   },
 };
 </script>

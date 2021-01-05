@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     handleCurrentChange(val) {
-       console.log(`第 ${val} 页`);
+      this.$emit('load-data', val);
     }
   }
 };
