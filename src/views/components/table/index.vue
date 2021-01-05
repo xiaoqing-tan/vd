@@ -102,7 +102,7 @@ export default {
       this.loading = false;
     },
     async loadData(val) {
-      console.log(`第 ${val} 页`);
+      console.log(`第 ${val} 页!`);
       this.loading = true;
       await this.$sleep(200);
       this.loading = false;
