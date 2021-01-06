@@ -26,12 +26,13 @@
         </el-table-column>
       </el-table>
     </div>
-    <div class="vd-table__pagination">
+    <div class="vd-table__pagination" :class="{'vd-table__pagination-mobile': isMobile}">
       <el-pagination
-        background
+        :background="!isMobile"
         @current-change="handleCurrentChange"
         layout="prev, pager, next"
         :total="1000"
+        :small="isMobile"
       >
       </el-pagination>
     </div>
@@ -49,6 +50,12 @@ export default {
     loading: {
       type: Boolean,
       default: false
+    }
+  },
+  computed: {
+    isMobile() {
+      const { config: { isMobile } } = this.$store.state;
+      return isMobile;
     }
   },
   methods: {
@@ -83,6 +90,9 @@ export default {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    &-mobile {
+      justify-content: center;
+    }
   }
 }
 </style>

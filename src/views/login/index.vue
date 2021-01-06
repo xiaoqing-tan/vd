@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="login" :class="{'login-mobile': isMobile}">
     <div class="vd-form">
       <h1>Vue Dashboard</h1>
       <div class="vd-item">
@@ -31,6 +31,12 @@ export default {
       loading: false
     }
   },
+  computed: {
+    isMobile() {
+      const { config: { isMobile } } = this.$store.state;
+      return isMobile;
+    }
+  },
   methods: {
     async onSubmit() {
       const { query: { redirect } } = this.$route;
@@ -59,6 +65,13 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    &.login-mobile {
+      padding:  0 10px;
+      .vd-form {
+        width: 100%;
+        border-radius: 5px ;
+      }
+    }
     h1 {
       text-align: center;
       font-size: 28px;
@@ -74,6 +87,7 @@ export default {
       flex-direction: column;
       padding: 50px;
       box-sizing: border-box;
+
     }
 
     .vd-item {
