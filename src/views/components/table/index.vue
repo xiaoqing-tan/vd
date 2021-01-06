@@ -3,7 +3,10 @@
     <vd-breadcrumb />
     <div class="block">
       <h2>表格</h2>
-      <vd-table :loading="loading" v-on:load-data="loadData" :config="config">
+      <p>
+        <el-button size="small" type="primary" icon="el-icon-plus" >添加</el-button><el-button size="small" icon="el-icon-delete" type="primary" >删除</el-button>
+      </p>
+      <vd-table :loading="loading" @on-select="onSelect" @load-data="loadData" :config="config">
         <template slot-scope="scope" slot="action">
           <div class="vd-table__action">
             <span @click="onEdit(scope)">编辑</span>
@@ -27,6 +30,10 @@ export default {
     return {
       config: {
         columns: [
+          {
+            label: "编号",
+            prop: "id"
+          },
           {
             label: "地址",
             prop: "address",
@@ -106,6 +113,9 @@ export default {
       this.loading = true;
       await this.$sleep(200);
       this.loading = false;
+    },
+    onSelect(val) {
+      console.log(val)
     }
   },
 };

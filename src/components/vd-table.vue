@@ -7,8 +7,10 @@
         v-loading="loading"
         size="medium"
         :data="config.dataSource"
-        style="width: 100%; border-radius: 5px"
+        style="width: 100%; border-radius: 3px"
+        @selection-change="handleSelectionChange"
       >
+        <el-table-column type="selection"></el-table-column>
         <el-table-column
           v-for="item in config.columns"
           :key="item.prop"
@@ -52,6 +54,9 @@ export default {
   methods: {
     handleCurrentChange(val) {
       this.$emit('load-data', val);
+    },
+    handleSelectionChange(val) {
+      this.$emit('on-select', val);
     }
   }
 };
