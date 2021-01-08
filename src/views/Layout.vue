@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <vd-sidebar :isCollapse="isCollapse" />
+    <vd-nav :mode="mode" :isCollapse="isCollapse" />
     <div class="page" :class="{'active': !isCollapse}" >
       <div class="topbar">
         <p>
@@ -42,6 +42,10 @@ export default {
     isMobile() {
       const { config: { isMobile } } = this.$store.state;
       return isMobile;
+    },
+    mode() {
+      const { config: { mode }} = this.$store.state;
+      return mode;
     }
   },
   methods: {

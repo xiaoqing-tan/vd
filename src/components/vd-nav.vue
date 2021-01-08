@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar" :class="{'is-close': isCollapse}">
+  <div class="vd-nav" :class="{'is-close': isCollapse}">
     <h1><router-link to="/">{{ siteName }}</router-link></h1>
     <el-menu 
       :default-active="defaultActive" 
@@ -8,6 +8,7 @@
       @close="onClose"
       background-color="#0d2755"
       text-color="#fff"
+      :mode="mode"
       unique-opened
       router
       :collapse-transition="false"
@@ -38,7 +39,7 @@
 
 <script>
 export default {
-  name: 'vd-sidebar',
+  name: 'vd-nav',
   computed: {
     siteName() {
       return this.isCollapse ? 'VD' : 'VUE DASHBOARD'
@@ -59,6 +60,10 @@ export default {
     }
   },
   props: {
+    mode: {
+      type: String,
+      default: 'vertical'
+    },
     isCollapse: {
       type: Boolean,
       default: false
@@ -76,7 +81,7 @@ export default {
 </script>
 
 <style lang="less">
-.sidebar {
+.vd-nav {
   width: 250px;
   height: 100%;
   background-color: #0d2755;
@@ -86,10 +91,11 @@ export default {
   transition: all .2s ease-in-out;
   h1 {
     font-size: 20px;
-    height: 50px;
-    line-height: 50px;
+    height: 60px;
+    line-height: 60px;
     text-align: center;
     color: #fff;
+    margin: 0;
     a {
       color: #fff;
       text-decoration: none;
