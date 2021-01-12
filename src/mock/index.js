@@ -50,6 +50,12 @@ const menu1 = [
             path: "/components/icons",
             component: "components/icons",
           },
+          {
+            name: "地图",
+            icon: "el-icon-map-location",
+            path: "/components/map",
+            component: "components/map",
+          },
         ],
       },
       {
