@@ -45,15 +45,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.page {
-  margin-left: 64px;
-  transition: all .2s ease-in-out;
-  overflow: hidden;
-  &.active {
-    margin-left: 250px;
-    transition: all .2s ease-in-out;
-  }
-}
+
 
 .block {
   box-sizing: border-box;

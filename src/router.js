@@ -28,6 +28,13 @@ const router = new Router({
         title: "登录",
       },
     },
+    {
+      path: "/blank",
+      component: () => import("./views/blank.vue"),
+      meta: {
+        title: "空白",
+      },
+    },
   ],
 });
 

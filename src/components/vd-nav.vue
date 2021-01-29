@@ -1,6 +1,5 @@
 <template>
-  <div class="vd-nav" :class="{'is-close': isCollapse}">
-    <h1><router-link to="/">{{ siteName }}</router-link></h1>
+  <div class="vd-nav">
     <el-menu 
       :default-active="defaultActive" 
       class="el-menu-vertical-demo" 
@@ -39,11 +38,17 @@
 
 <script>
 export default {
-  name: 'vd-nav',
-  computed: {
-    siteName() {
-      return this.isCollapse ? 'VD' : 'VUE DASHBOARD'
+  props: {
+    mode: {
+      type: String,
+      default: 'vertical'
     },
+    isCollapse: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
     defaultActive() {
       return this.$route.path
     },
@@ -59,16 +64,6 @@ export default {
       }
     }
   },
-  props: {
-    mode: {
-      type: String,
-      default: 'vertical'
-    },
-    isCollapse: {
-      type: Boolean,
-      default: false
-    }
-  },
   methods: {
     onOpen() {
 
@@ -81,71 +76,34 @@ export default {
 </script>
 
 <style lang="less">
-.vd-nav {
-  width: 250px;
-  height: 100%;
-  background-color: #0d2755;
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-  transition: all .2s ease-in-out;
-  h1 {
-    font-size: 20px;
-    height: 60px;
-    line-height: 60px;
-    text-align: center;
-    color: #fff;
-    margin: 0;
-    a {
-      color: #fff;
-      text-decoration: none;
-      &:hover {
-        color: #b3b3b6;
+  .vd-nav {
+    &>.el-menu {
+      border-right: 0 none;
+      height: calc(100% - 50px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      &::-webkit-scrollbar {
+        width: 17px;
+        height: 17px;
+        background-color: transparent;
+        border-radius: 9px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #40425a;
+        border-radius: 9px;
+        background-clip: content-box;
+        border: 5px solid transparent;
+      }
+      i {
+        &.el-icon-folder {
+          font-size: 18px;
+          margin-right: 3px;
+        }
+        &.el-icon-tickets {
+          font-size: 16px;
+          margin-right: 0;
+        }
       }
     }
   }
-  &>.el-menu {
-    border-right: 0 none;
-    height: calc(100% - 50px);
-    overflow-y: auto;
-    overflow-x: hidden;
-    &::-webkit-scrollbar {
-      width: 17px;
-      height: 17px;
-      background-color: transparent;
-      border-radius: 9px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background-color: #40425a;
-      border-radius: 9px;
-      background-clip: content-box;
-      border: 5px solid transparent;
-    }
-    i {
-      &.el-icon-folder {
-        font-size: 18px;
-        margin-right: 3px;
-      }
-      &.el-icon-tickets {
-        font-size: 16px;
-        margin-right: 0;
-      }
-    }
-  }
-
-  &.is-close {
-    width: 64px;
-    transition: all .2s ease-in-out;
-    .logo {
-      img {
-        margin-right: 0;
-      }
-      a {
-        padding: 0;
-      }
-    }
-  }
-}
-
-
 </style>

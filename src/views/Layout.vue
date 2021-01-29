@@ -1,6 +1,6 @@
 <template>
-  <div class="main">
-    <vd-nav :mode="mode" :isCollapse="isCollapse" />
+  <div class="main" :class="{'horizontal': mode === 'horizontal'}">
+    <vd-sidebar :mode="mode" :isCollapse="isCollapse" />
     <div class="page" :class="{'active': !isCollapse}" >
       <div class="topbar">
         <p>
@@ -92,6 +92,33 @@ export default {
       font-size: 18px;
     }
   }
+
+  .page {
+    margin-left: 64px;
+    transition: all .2s ease-in-out;
+    overflow: hidden;
+    &.active {
+      margin-left: 250px;
+      transition: all .2s ease-in-out;
+    }
+  }
+
+  .main {
+    &.horizontal {
+      .vd-nav {
+        width: 100%;
+        position: static;
+        display: flex;
+        h1 {
+          width: 250px;
+        }
+      }
+      .page {
+        margin-left: 0;
+      }
+    }
+  }
+
   .view {
     padding: 20px;
   }
