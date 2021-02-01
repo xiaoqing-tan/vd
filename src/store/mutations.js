@@ -11,6 +11,12 @@ const mutations = {
       menu: data,
       init: true
     };
+  },
+  UPDATE_CONFIG(state, data) {
+    state.config = {
+      ...state.config,
+      ...data
+    }
   }
 };
 

@@ -1,11 +1,16 @@
 <template>
   <div class="main" :class="{'horizontal': mode === 'horizontal'}">
-    <vd-sidebar :mode="mode" :isCollapse="isCollapse" />
-    <div class="page" :class="{'active': !isCollapse}" >
-      <div class="topbar">
-        <p>
-          <i @click="onToggleSidebar" class="sidebar-switch" :class="`el-icon-s-${isCollapse ? 'unfold' : 'fold' }`"></i>
-        </p>
+    <div class="topbar">
+      <h1 :class="{'is-close': isCollapse}"><router-link to="/">{{siteName}}</router-link></h1>
+      <div class="collapse" v-if="mode === 'vertical'">
+        <i 
+          @click="onToggleSidebar" 
+          class="sidebar-switch" 
+          :class="`el-icon-s-${isCollapse ? 'unfold' : 'fold' }`" 
+        />
+      </div>
+      <vd-nav v-if="mode === 'horizontal'" :isCollapse="isCollapse" :mode="mode" />
+      <div class="topbar__setting">
         <el-dropdown @command="handleCommand">
           <span class="el-dropdown-link">
             {{userData.username}} <i class="el-icon-arrow-down el-icon--right"></i>
@@ -16,6 +21,9 @@
           </el-dropdown-menu>
         </el-dropdown>
       </div>
+    </div>
+    <vd-sidebar v-if="mode === 'vertical'" :mode="mode" :isCollapse="isCollapse" />
+    <div class="page" :class="{'active': !isCollapse}" >
       <transition name="slide-fade">
         <router-view class="view" />
       </transition>
@@ -35,6 +43,9 @@ export default {
     this.isCollapse = this.isMobile;
   },
   computed: {
+    siteName() {
+      return this.isCollapse ? 'VD' : 'VUE DASHBOARD'
+    },
     userData() {
       const { userData } = this.$store.state;
       return userData;
@@ -73,7 +84,6 @@ export default {
     line-height: 60px;
     color: #666;
     background: #fff;
-    padding: 0 20px;
     box-shadow: 1px 1px 6px rgba(129, 129, 129, 0.1);
     display: flex;
     justify-content: space-between;
@@ -82,6 +92,32 @@ export default {
     box-sizing: border-box;
     font-size: 14px;
     font-weight: bold;
+    &__setting {
+      padding: 0 20px;
+    }
+    h1 {
+      font-size: 20px;
+      height: 60px;
+      line-height: 60px;
+      width: 250px;
+      text-align: center;
+      background-color: #0d2755 ;
+      color: #fff;
+      margin: 0;
+      transition: all .2s ease-in-out;
+      &.is-close {
+        width: 64px;
+        transition: all .2s ease-in-out;
+      }
+      a {
+        color: #fff;
+        text-decoration: none;
+        &:hover {
+          color: #b3b3b6;
+        }
+      }
+    }
+
     p {
       span {
         margin: 0 5px;
@@ -104,14 +140,22 @@ export default {
   }
 
   .main {
+    .collapse {
+      flex: 1;
+      padding: 0 20px;
+    }
     &.horizontal {
+      h1 {
+        background-color: #fff ;
+        a {
+          color: #0d2755;
+        }
+      }
       .vd-nav {
         width: 100%;
         position: static;
         display: flex;
-        h1 {
-          width: 250px;
-        }
+        justify-content: center;
       }
       .page {
         margin-left: 0;

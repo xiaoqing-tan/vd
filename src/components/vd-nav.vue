@@ -5,8 +5,8 @@
       class="el-menu-vertical-demo" 
       @open="onOpen" 
       @close="onClose"
-      background-color="#0d2755"
-      text-color="#fff"
+      :background-color="backgroundColor"
+      :text-color="textColor"
       :mode="mode"
       unique-opened
       router
@@ -49,6 +49,12 @@ export default {
     }
   },
   computed: {
+    backgroundColor() {
+      return this.mode === 'vertical' ? '#0d2755' : '#fff';
+    },
+    textColor() {
+      return this.mode === 'vertical' ? '#fff' : '#0d2755';
+    },
     defaultActive() {
       return this.$route.path
     },

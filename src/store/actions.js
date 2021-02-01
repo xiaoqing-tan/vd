@@ -14,6 +14,9 @@ const actions = {
   async getUserData({ commit }) {
     const userData = storage.get('userData');
     commit('SET_USER_DATA', userData);
+  },
+  updateConfig({ commit }, params) {
+    commit('UPDATE_CONFIG', params);
   }
 };
 
