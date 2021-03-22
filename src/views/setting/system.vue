@@ -2,13 +2,21 @@
   <div>
     <vd-breadcrumb />
     <div class="block">
-      <h2>Setting</h2>  
-
+      <h2>系统配置</h2>
+      <p>
+        <el-radio-group v-model="mode">
+          <el-radio label="horizontal">horizontal</el-radio>
+          <el-radio label="vertical">vertical</el-radio>
+        </el-radio-group>
+      </p>
+      <p>
+        <el-button round @click="onSave" type="primary">确定</el-button>
+      </p>
     </div>
   </div>
 </template>
 
-<script>  
+<script>
 export default {
   data() {
     return {

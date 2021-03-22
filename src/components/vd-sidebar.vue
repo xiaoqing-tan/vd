@@ -29,7 +29,6 @@ export default {
   top: 60px;
   z-index: 1000;
   transition: all .2s ease-in-out;
-
   &.is-close {
     width: 64px;
     transition: all .2s ease-in-out;

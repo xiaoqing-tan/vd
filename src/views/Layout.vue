@@ -92,6 +92,9 @@ export default {
     box-sizing: border-box;
     font-size: 14px;
     font-weight: bold;
+    position: fixed;
+    top: 0;
+    z-index: 10;
     &__setting {
       padding: 0 20px;
     }

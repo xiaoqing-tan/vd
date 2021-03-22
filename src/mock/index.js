@@ -77,6 +77,12 @@ const menu1 = [
             path: "/setting/role",
             component: "setting/role",
           },
+          {
+            name: "系统",
+            icon: "el-icon-s-platform",
+            path: "/setting/system",
+            component: "setting/system",
+          },
         ],
       },
     ],
@@ -102,6 +108,12 @@ const menu2 = [
         path: "/setting",
         component: "setting",
         children: [
+          {
+            name: "系统",
+            icon: "el-icon-s-platform",
+            path: "/setting/system",
+            component: "setting/system",
+          },
           {
             name: "个人信息",
             icon: "el-icon-user-solid",

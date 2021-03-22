@@ -1,3 +1,5 @@
+import less from "./index.less";
+
 export default {
   name: 'VD',
   storage: 'localStorage',
@@ -5,5 +7,6 @@ export default {
   description: '基于Vue+Element ui的后台管理系统',
   isMobile: /(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent),
   // mode: 'horizontal'
-  mode: 'vertical'
+  mode: 'vertical',
+  less
 }
