@@ -1,21 +1,29 @@
 <template>
   <div class="login" :class="{'login-mobile': isMobile}">
-    <div class="vd-form">
-      <h1>Vue Dashboard</h1>
-      <div class="vd-item">
-        <p class="vd-label">用户名</p>
-        <p class="vd-input-element"><el-input v-model="form.username" type="text" /></p>
+    <div class="login__header">
+      <h1>VD</h1>
+    </div>
+    <div class="login__content vd-form">
+      <div class="vd-form__header">
+        <h2>登录</h2>
+        <p>Vue Dashboard 创造不一样的管理系统!</p>
       </div>
       <div class="vd-item">
-        <p class="vd-label">密码</p>
-        <p class="vd-input-element"><el-input v-model="form.password" type="password" /></p>
+        <p class="vd-input-element">
+          <el-input prefix-icon="el-icon-user" placeholder="登录名" v-model="form.username" type="text" />
+        </p>
       </div>
-      <div class="vd-item vd-no-label">
-        <el-button @click="onSubmit" round :loading="loading" type="primary">确定</el-button>
-        <el-button round type="info">取消</el-button>
-        <!-- <button @click="onSubmit" class="vd-button">确定</button> -->
-        <!-- <button class="vd-button vd-cancel">取消</button> -->
+      <div class="vd-item">
+        <p class="vd-input-element">
+          <el-input prefix-icon="el-icon-lock" placeholder="密码" v-model="form.password" type="password" />
+        </p>
       </div>
+      <div class="vd-item">
+        <el-button @click="onSubmit"  :loading="loading" type="primary">确定</el-button>
+      </div>
+    </div>
+    <div class="login__footer">
+      <p>Vue Dashboard &copy; <a href="/">忘记密码?</a></p>
     </div>
   </div>
 </template>
@@ -41,7 +49,7 @@ export default {
     async onSubmit() {
       const { query: { redirect } } = this.$route;
       this.loading = true;
-      await this.$sleep(500);
+      await this.$sleep(2000);
       try {
         await this.$store.dispatch('userLogin', this.form);
         this.$message.success('登录成功');
@@ -65,6 +73,7 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: #f8fbfd;
     &.login-mobile {
       padding:  0 10px;
       .vd-form {
@@ -72,22 +81,61 @@ export default {
         border-radius: 5px ;
       }
     }
+    &__header {
+
+    }
+    &__content {
+      margin-bottom: 30px;
+    }
+    &__footer {
+      text-align: center;
+      p {
+        font-size: 14px;
+        color: #999;
+        margin: 0;
+        a {
+          text-decoration: none;
+          color: #3096f5;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
     h1 {
       text-align: center;
       font-size: 28px;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
+      color: #3096f5;
     }
     .vd-form {
-      width: 500px;
+      width: 460px;
       background-color: #fff;
-      border-radius: 15px;
+      border-radius: 10px;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      padding: 50px;
+      padding: 50px 50px 55px;
       box-sizing: border-box;
-
+      box-shadow: 0px 0px 10px #f3f3f3;
+      p {
+        margin: 0 0 20px;
+      }
+      &__header {
+        text-align: center;
+        margin-bottom: 35px;
+        h2 {
+          font-size: 20px;
+          color: #333;
+          margin: 0 0 15px;
+        }
+        p {
+          color: #999;
+          margin: 0;
+          font-size: 14px;
+        }
+      }
     }
 
     .vd-item {
@@ -95,11 +143,9 @@ export default {
       justify-content: center;
       align-items: center;
       width: 100%;
-      margin-bottom: 10px;
       box-sizing: border-box;
-      &.vd-no-label {
-        padding-left: 100px;
-        justify-content: flex-start;
+      button {
+        width: 100%;
       }
     }
 
@@ -115,12 +161,7 @@ export default {
       flex: 1;
       input[type='text'],
       input[type='password'] {
-        border: #f7f7f7 1px solid;
-        border-radius: 3px;
-        font-size: 14px;
-        padding: 10px;
         width: 100%;
-        box-sizing: border-box;
       }
     }
     

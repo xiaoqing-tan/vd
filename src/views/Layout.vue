@@ -64,10 +64,9 @@ export default {
       this.$router.replace('/login');
     },
     onToggleSidebar() {
-      if (this.isMobile) {
-        return this.$message('移动端无法展开侧边栏!');
+      if (!this.isMobile) {
+        this.isCollapse = !this.isCollapse;
       }
-      this.isCollapse = !this.isCollapse;
     },
     handleCommand(path) {
       this.$router.push({
