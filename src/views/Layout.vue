@@ -44,7 +44,7 @@ export default {
   },
   computed: {
     siteName() {
-      return this.isCollapse ? 'VD' : 'VUE DASHBOARD'
+      return this.isCollapse ? 'VD' : 'VUE DASHBOARD';
     },
     userData() {
       const { userData } = this.$store.state;

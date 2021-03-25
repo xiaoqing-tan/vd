@@ -16,8 +16,8 @@
       </el-submenu>
       <el-menu-item index="3" disabled>消息中心</el-menu-item>
       <el-menu-item index="4">
-        <i class="el-icon-menu"></i>
-        <template slot="title"><span>导航二</span><em class="alert">{{count}}</em></template>
+        <i class="el-icon-menu" />
+        <template slot="title"><span>导航二</span><em class="alert">{{ count }}</em></template>
       </el-menu-item>
     </el-menu>
   </div>
@@ -34,20 +34,20 @@ export default {
     }
   },
   created() {
-    this.getData();
+    this.getData()
   },
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
+      console.log(key, keyPath)
     },
     getData() {
       this.timer = setInterval(() => {
         if (this.count > 9) {
-          this.count = 0;
+          this.count = 0
         } else {
-          this.count++;
+          this.count++
         }
-      }, 1000);
+      }, 1000)
     }
   }
 }

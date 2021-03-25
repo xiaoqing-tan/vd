@@ -4,10 +4,10 @@
     <div class="block">
       <h2>表格</h2>
       <p>
-        <el-button size="small" type="primary" icon="el-icon-plus" >添加</el-button><el-button size="small" icon="el-icon-delete" type="primary" >删除</el-button>
+        <el-button size="small" type="primary" icon="el-icon-plus">添加</el-button><el-button size="small" icon="el-icon-delete" type="primary">删除</el-button>
       </p>
-      <vd-table :loading="loading" @on-select="onSelect" @load-data="loadData" :config="config">
-        <template slot-scope="scope" slot="action">
+      <vd-table :loading="loading" :config="config" @on-select="onSelect" @load-data="loadData">
+        <template slot="action" slot-scope="scope">
           <div class="vd-table__action">
             <span @click="onEdit(scope)">编辑</span>
             <el-popconfirm
@@ -31,94 +31,94 @@ export default {
       config: {
         columns: [
           {
-            label: "编号",
-            prop: "id"
+            label: '编号',
+            prop: 'id'
           },
           {
-            label: "地址",
-            prop: "address",
+            label: '地址',
+            prop: 'address'
           },
           {
-            label: "姓名",
-            prop: "name",
+            label: '姓名',
+            prop: 'name'
           },
           {
-            label: "性别",
-            prop: "gender",
+            label: '性别',
+            prop: 'gender',
             formatter: ({ gender }) => {
-              return gender === 1 ? "男" : "女";
-            },
+              return gender === 1 ? '男' : '女'
+            }
           },
           {
-            label: "地址",
-            prop: "date",
+            label: '地址',
+            prop: 'date'
           },
           {
-            label: "操作",
-            prop: "action",
-            slot: true,
-          },
+            label: '操作',
+            prop: 'action',
+            slot: true
+          }
         ],
         dataSource: [
           {
             id: 1,
-            date: "2016-05-02",
-            name: "王小虎",
+            date: '2016-05-02',
+            name: '王小虎',
             gender: 1,
-            address: "上海市普陀区金沙江路 1518 弄",
+            address: '上海市普陀区金沙江路 1518 弄'
           },
           {
             id: 2,
-            date: "2016-05-04",
-            name: "王小虎",
+            date: '2016-05-04',
+            name: '王小虎',
             gender: 2,
-            address: "上海市普陀区金沙江路 1517 弄",
+            address: '上海市普陀区金沙江路 1517 弄'
           },
           {
             id: 3,
-            date: "2016-05-01",
-            name: "王小虎",
+            date: '2016-05-01',
+            name: '王小虎',
             gender: 1,
-            address: "上海市普陀区金沙江路 1519 弄",
+            address: '上海市普陀区金沙江路 1519 弄'
           },
           {
             id: 4,
-            date: "2016-05-03",
-            name: "王小虎",
+            date: '2016-05-03',
+            name: '王小虎',
             gender: 1,
-            address: "上海市普陀区金沙江路 1516 弄",
-          },
-        ],
+            address: '上海市普陀区金沙江路 1516 弄'
+          }
+        ]
       },
-      loading: false,
-    };
+      loading: false
+    }
   },
   async created() {
-    this.loading = true;
-    await this.$sleep(200);
-    this.loading = false;
+    this.loading = true
+    await this.$sleep(200)
+    this.loading = false
   },
   methods: {
     onEdit({ row }) {
-      console.log(row);
+      console.log(row)
     },
     async onDel({ row }) {
-      this.loading = true;
-      this.config.dataSource = this.config.dataSource.filter(i => i.id !== row.id);
-      await this.$sleep(200);
-      this.loading = false;
+      this.loading = true
+      this.config.dataSource = this.config.dataSource.filter(i => i.id !== row.id)
+      await this.$sleep(200)
+      this.loading = false
     },
     async loadData(val) {
-      console.log(`第 ${val} 页!`);
-      this.loading = true;
-      await this.$sleep(200);
-      this.loading = false;
+      console.log(`第 ${val} 页!`)
+      this.loading = true
+      await this.$sleep(200)
+      this.loading = false
     },
     onSelect(val) {
       console.log(val)
     }
-  },
-};
+  }
+}
 </script>
 
 <style lang="less">

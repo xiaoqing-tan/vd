@@ -20,13 +20,20 @@
           :formatter="item.formatter"
         >
           <template slot-scope="scope">
-            <slot v-if="item.slot" :name="item.prop" :row='scope.row'></slot>
-            <span v-else>{{ item.formatter ? item.formatter(scope.row, item) : scope.row[item.prop] }}</span>
+            <slot v-if="item.slot" :name="item.prop" :row="scope.row"></slot>
+            <span v-else>{{
+              item.formatter
+                ? item.formatter(scope.row, item)
+                : scope.row[item.prop]
+            }}</span>
           </template>
         </el-table-column>
       </el-table>
     </div>
-    <div class="vd-table__pagination" :class="{'vd-table__pagination-mobile': isMobile}">
+    <div
+      class="vd-table__pagination"
+      :class="{ 'vd-table__pagination-mobile': isMobile }"
+    >
       <el-pagination
         :background="!isMobile"
         @current-change="handleCurrentChange"
@@ -41,7 +48,7 @@
 
 <script>
 export default {
-  name: 'vd-table',
+  name: "vd-table",
   props: {
     config: {
       type: Object,
@@ -49,23 +56,25 @@ export default {
     },
     loading: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     isMobile() {
-      const { config: { isMobile } } = this.$store.state;
+      const {
+        config: { isMobile },
+      } = this.$store.state;
       return isMobile;
-    }
+    },
   },
   methods: {
     handleCurrentChange(val) {
-      this.$emit('load-data', val);
+      this.$emit("load-data", val);
     },
     handleSelectionChange(val) {
-      this.$emit('on-select', val);
-    }
-  }
+      this.$emit("on-select", val);
+    },
+  },
 };
 </script>
 

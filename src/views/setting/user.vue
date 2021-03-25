@@ -2,13 +2,12 @@
   <div>
     <vd-breadcrumb />
     <div class="block">
-      <h2>Setting</h2>  
-
+      <h2>Setting</h2>
     </div>
   </div>
 </template>
 
-<script>  
+<script>
 export default {
   data() {
     return {
@@ -16,14 +15,14 @@ export default {
     }
   },
   created() {
-    const { mode } = this.$store.state.config;
-    this.mode = mode;
+    const { mode } = this.$store.state.config
+    this.mode = mode
   },
   methods: {
     onSave() {
       this.$store.dispatch('updateConfig', {
         mode: this.mode
-      });
+      })
     }
   }
 }

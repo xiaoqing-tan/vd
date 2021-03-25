@@ -1,7 +1,7 @@
-import { storage } from '@/utils';
-import config from '@/config';
+import { storage } from '@/utils'
+import config from '@/config'
 
-const { auth = {}, init = false, menu = [], role = 1 } = storage.get('userData') || {};
+const { auth = {}, init = false, menu = [], role = 1 } = storage.get('userData') || {}
 const state = {
   userData: {
     auth,
@@ -10,6 +10,6 @@ const state = {
     role
   },
   config
-};
+}
 
-export default state;
+export default state

@@ -2,14 +2,14 @@
   <div>
     <vd-breadcrumb />
     <div class="block">
-      <h2>表单</h2>  
+      <h2>表单</h2>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  
+
 }
 </script>
 

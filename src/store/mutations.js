@@ -3,14 +3,14 @@ const mutations = {
     state.userData = {
       ...state.userData,
       auth: data
-    };
+    }
   },
   SET_MENU(state, data) {
     state.userData = {
       ...state.userData,
       menu: data,
       init: true
-    };
+    }
   },
   UPDATE_CONFIG(state, data) {
     state.config = {
@@ -18,6 +18,6 @@ const mutations = {
       ...data
     }
   }
-};
+}
 
-export default mutations;
+export default mutations

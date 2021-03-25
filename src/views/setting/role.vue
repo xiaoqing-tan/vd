@@ -9,7 +9,7 @@
         </el-radio-group>
       </p>
       <p>
-        <el-button round @click="onSave" type="primary">确定</el-button>
+        <el-button round type="primary" @click="onSave">确定</el-button>
       </p>
     </div>
   </div>
@@ -19,19 +19,19 @@
 export default {
   data() {
     return {
-      role: 1,
-    };
+      role: 1
+    }
   },
   created() {
-    const { userData: { role }} = this.$store.state;
-    this.role = role;
+    const { userData: { role }} = this.$store.state
+    this.role = role
   },
   methods: {
     onSave() {
-      const userData = this.$storage.get("userData");
-      this.$storage.set("userData", { ...userData, role: this.role });
-      window.location.reload();
-    },
-  },
-};
+      const userData = this.$storage.get('userData')
+      this.$storage.set('userData', { ...userData, role: this.role })
+      window.location.reload()
+    }
+  }
+}
 </script>

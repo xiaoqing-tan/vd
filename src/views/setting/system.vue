@@ -10,7 +10,7 @@
         </el-radio-group>
       </p>
       <p>
-        <el-button round @click="onSave" type="primary">确定</el-button>
+        <el-button round type="primary" @click="onSave">确定</el-button>
       </p>
     </div>
   </div>
@@ -24,14 +24,14 @@ export default {
     }
   },
   created() {
-    const { mode } = this.$store.state.config;
-    this.mode = mode;
+    const { mode } = this.$store.state.config
+    this.mode = mode
   },
   methods: {
     onSave() {
       this.$store.dispatch('updateConfig', {
         mode: this.mode
-      });
+      })
     }
   }
 }

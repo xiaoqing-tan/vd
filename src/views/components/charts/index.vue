@@ -2,7 +2,7 @@
   <div>
     <vd-breadcrumb />
     <div class="block">
-      <h2>图表</h2>  
+      <h2>图表</h2>
     </div>
   </div>
 </template>

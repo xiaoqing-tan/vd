@@ -1,12 +1,12 @@
 <template>
   <div class="vd-sidebar" :class="{'is-close': isCollapse}">
-    <vd-nav :isCollapse="isCollapse" :mode="mode" />
+    <vd-nav :is-collapse="isCollapse" :mode="mode" />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'vd-sidebar',
+  name: 'VdSidebar',
   props: {
     mode: {
       type: String,
@@ -42,6 +42,5 @@ export default {
     }
   }
 }
-
 
 </style>

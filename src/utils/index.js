@@ -1,5 +1,5 @@
-import Storage from './storage.js';
-import setting from '@/config';
+import Storage from './storage.js'
+import setting from '@/config'
 
 export const sleep = (time) => {
   return new Promise((resolve) => {
@@ -9,4 +9,4 @@ export const sleep = (time) => {
   })
 }
 
-export const storage = new Storage(setting.storage);
+export const storage = new Storage(setting.storage)
