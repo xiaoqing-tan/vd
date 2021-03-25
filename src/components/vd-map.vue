@@ -1,9 +1,9 @@
 <template>
   <div class="vd-map">
     <div class="amap-wrapper">
-      <el-amap-search-box class="search-box" :search-option="searchOption" :on-search-result="onSearch"></el-amap-search-box>
+      <el-amap-search-box class="search-box" :search-option="searchOption" :on-search-result="onSearch" />
       <el-amap class="amap-box" :center="mapCenter" vid="amap-vue">
-        <el-amap-marker v-for="(marker, index) in markers" :key="index" :position="marker" ></el-amap-marker>
+        <el-amap-marker v-for="(marker, index) in markers" :key="index" :position="marker" />
       </el-amap>
     </div>
   </div>
@@ -23,22 +23,22 @@ export default {
   },
   methods: {
     onSearch(pois) {
-      let latSum = 0;
-      let lngSum = 0;
-      let markers = [];
+      let latSum = 0
+      let lngSum = 0
+      const markers = []
       if (pois.length > 0) {
         pois.forEach(poi => {
-          let {lng, lat} = poi;
-          lngSum += lng;
-          latSum += lat;
-          markers.push([poi.lng, poi.lat]);
-        });
-        let center = {
+          const { lng, lat } = poi
+          lngSum += lng
+          latSum += lat
+          markers.push([poi.lng, poi.lat])
+        })
+        const center = {
           lng: lngSum / pois.length,
           lat: latSum / pois.length
-        };
-        this.markers = markers;
-        this.mapCenter = [center.lng, center.lat];
+        }
+        this.markers = markers
+        this.mapCenter = [center.lng, center.lat]
       }
     }
   }

@@ -1,37 +1,36 @@
 <template>
   <div class="vd-nav">
-    <el-menu 
-      :default-active="defaultActive" 
-      class="el-menu-vertical-demo" 
-      @open="onOpen" 
-      @close="onClose"
+    <el-menu
+      :default-active="defaultActive"
+      class="el-menu-vertical-demo"
       :background-color="backgroundColor"
       :text-color="textColor"
       :mode="mode"
       unique-opened
       router
       :collapse-transition="false"
-      :collapse="isCollapse">
-        <el-menu-item v-for="item  in menu.top" :key="item.path" :index="item.path || '/'">
-          <i :class="item.icon"></i>
-          <span slot="title">{{item.name}}</span>
+      :collapse="isCollapse"
+      @open="onOpen"
+      @close="onClose"
+    >
+      <el-menu-item v-for="topItem in menu.top" :key="topItem.path" :index="topItem.path || '/'">
+        <i :class="topItem.icon" />
+        <span slot="title">{{ topItem.name }}</span>
+      </el-menu-item>
+      <el-submenu v-for="item in menu.main" :key="item.path" :index="item.path">
+        <template slot="title">
+          <i :class="item.icon" />
+          <span slot="title">{{ item.name }}</span>
+        </template>
+        <el-menu-item v-for="childItem in item.children" :key="childItem.path" :index="childItem.path">
+          <i :class="childItem.icon" />
+          <span slot="title">{{ childItem.name }}</span>
         </el-menu-item>
-        <el-submenu v-for="item in menu.main" :key="item.path" :index="item.path">
-          <template slot="title">
-            <i :class="item.icon"></i>
-            <span slot="title">{{item.name}}</span>
-          </template>
-          <el-menu-item v-for="childItem in item.children" :key="childItem.path" :index="childItem.path">
-            <i :class="childItem.icon"></i>
-            <span slot="title">{{childItem.name}}</span>
-          </el-menu-item>
-
-          <el-menu-item v-for="item  in menu.bottom" :key="item.path" :index="item.path">
-            <i :class="item.icon"></i>
-            <span slot="title">{{item.name}}</span>
-          </el-menu-item>
-
-        </el-submenu>
+        <el-menu-item v-for="bottomItem in menu.bottom" :key="bottomItem.path" :index="bottomItem.path">
+          <i :class="bottomItem.icon" />
+          <span slot="title">{{ bottomItem.name }}</span>
+        </el-menu-item>
+      </el-submenu>
     </el-menu>
   </div>
 </template>
@@ -50,19 +49,19 @@ export default {
   },
   computed: {
     backgroundColor() {
-      return this.mode === 'vertical' ? '#0d2755' : '#fff';
+      return this.mode === 'vertical' ? '#0d2755' : '#fff'
     },
     textColor() {
-      return this.mode === 'vertical' ? '#fff' : '#0d2755';
+      return this.mode === 'vertical' ? '#fff' : '#0d2755'
     },
     defaultActive() {
       return this.$route.path
     },
     menu() {
-      const { userData: { menu } } = this.$store.state;
-      const top = menu[0].children.filter(i => !i.children && i.type === 'top');
-      const main = menu[0].children.filter(i => i.children);
-      const bottom = menu[0].children.filter(i => !i.children && i.type === 'bottom');
+      const { userData: { menu }} = this.$store.state
+      const top = menu[0].children.filter(i => !i.children && i.type === 'top')
+      const main = menu[0].children.filter(i => i.children)
+      const bottom = menu[0].children.filter(i => !i.children && i.type === 'bottom')
       return {
         top,
         main,

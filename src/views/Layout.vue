@@ -1,19 +1,19 @@
 <template>
   <div class="main" :class="{'horizontal': mode === 'horizontal'}">
     <div class="topbar">
-      <h1 :class="{'is-close': isCollapse}"><router-link to="/">{{siteName}}</router-link></h1>
-      <div class="collapse" v-if="mode === 'vertical'">
-        <i 
-          @click="onToggleSidebar" 
-          class="sidebar-switch" 
-          :class="`el-icon-s-${isCollapse ? 'unfold' : 'fold' }`" 
+      <h1 :class="{'is-close': isCollapse}"><router-link to="/">{{ siteName }}</router-link></h1>
+      <div v-if="mode === 'vertical'" class="collapse">
+        <i
+          class="sidebar-switch"
+          :class="`el-icon-s-${isCollapse ? 'unfold' : 'fold' }`"
+          @click="onToggleSidebar"
         />
       </div>
-      <vd-nav v-if="mode === 'horizontal'" :isCollapse="isCollapse" :mode="mode" />
+      <vd-nav v-if="mode === 'horizontal'" :is-collapse="isCollapse" :mode="mode" />
       <div class="topbar__setting">
         <el-dropdown @command="handleCommand">
           <span class="el-dropdown-link">
-            {{userData.username}} <i class="el-icon-arrow-down el-icon--right"></i>
+            {{ userData.username }} <i class="el-icon-arrow-down el-icon--right" />
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item command="/setting">个人信息</el-dropdown-item>
@@ -22,8 +22,8 @@
         </el-dropdown>
       </div>
     </div>
-    <vd-sidebar v-if="mode === 'vertical'" :mode="mode" :isCollapse="isCollapse" />
-    <div class="page" :class="{'active': !isCollapse}" >
+    <vd-sidebar v-if="mode === 'vertical'" :mode="mode" :is-collapse="isCollapse" />
+    <div class="page" :class="{'active': !isCollapse}">
       <transition name="slide-fade">
         <router-view class="view" />
       </transition>
@@ -39,33 +39,33 @@ export default {
       isCollapse: true
     }
   },
-  created() {
-    this.isCollapse = this.isMobile;
-  },
   computed: {
     siteName() {
-      return this.isCollapse ? 'VD' : 'VUE DASHBOARD';
+      return this.isCollapse ? 'VD' : 'VUE DASHBOARD'
     },
     userData() {
-      const { userData } = this.$store.state;
-      return userData;
+      const { userData } = this.$store.state
+      return userData
     },
     isMobile() {
-      const { config: { isMobile } } = this.$store.state;
-      return isMobile;
+      const { config: { isMobile }} = this.$store.state
+      return isMobile
     },
     mode() {
-      const { config: { mode }} = this.$store.state;
-      return mode;
+      const { config: { mode }} = this.$store.state
+      return mode
     }
+  },
+  created() {
+    this.isCollapse = this.isMobile
   },
   methods: {
     onLogout() {
-      this.$router.replace('/login');
+      this.$router.replace('/login')
     },
     onToggleSidebar() {
       if (!this.isMobile) {
-        this.isCollapse = !this.isCollapse;
+        this.isCollapse = !this.isCollapse
       }
     },
     handleCommand(path) {

@@ -7,7 +7,7 @@
 <script>
 
 export default {
-  name: 'App',
+  name: 'App'
 }
 </script>
 
@@ -44,8 +44,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-
 
 .block {
   box-sizing: border-box;

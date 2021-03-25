@@ -4,34 +4,33 @@
  * @returns
  */
 export function addRouter(list) {
-  const router = [];
+  const router = []
   try {
     list.forEach(({ name, path, component, children, redirect }) => {
       let item = {
         path,
         name,
         meta: {
-          title: name,
+          title: name
         },
         component: () =>
-          component === "layout"
-            ? import("@/views/Layout.vue")
-            : import(`@/views/${component}`),
-      };
+          component === 'layout'
+            ? import('@/views/Layout.vue')
+            : import('@/views/' + component)
+      }
       if (redirect) {
-        item = { ...item, redirect };
+        item = { ...item, redirect }
       }
       if (children) {
         item = {
           ...item,
-          children: addRouter(children),
-        };
+          children: addRouter(children)
+        }
       }
-      router.push(item);
-    });
+      router.push(item)
+    })
   } catch (error) {
-    console.error(error);
-    return [];
+    return []
   }
-  return router;
+  return router
 }

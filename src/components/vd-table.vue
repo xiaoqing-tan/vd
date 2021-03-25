@@ -2,15 +2,15 @@
   <div class="vd-table">
     <div class="vd-table__content">
       <el-table
+        v-loading="loading"
         border
         stripe
-        v-loading="loading"
         size="medium"
         :data="config.dataSource"
         style="width: 100%; border-radius: 3px"
         @selection-change="handleSelectionChange"
       >
-        <el-table-column type="selection"></el-table-column>
+        <el-table-column type="selection" />
         <el-table-column
           v-for="item in config.columns"
           :key="item.prop"
@@ -20,7 +20,7 @@
           :formatter="item.formatter"
         >
           <template slot-scope="scope">
-            <slot v-if="item.slot" :name="item.prop" :row="scope.row"></slot>
+            <slot v-if="item.slot" :name="item.prop" :row="scope.row" />
             <span v-else>{{
               item.formatter
                 ? item.formatter(scope.row, item)
@@ -36,46 +36,45 @@
     >
       <el-pagination
         :background="!isMobile"
-        @current-change="handleCurrentChange"
         layout="prev, pager, next"
         :total="1000"
         :small="isMobile"
-      >
-      </el-pagination>
+        @current-change="handleCurrentChange"
+      />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "vd-table",
+  name: 'VdTable',
   props: {
     config: {
       type: Object,
-      default: () => {},
+      default: () => {}
     },
     loading: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   computed: {
     isMobile() {
       const {
-        config: { isMobile },
-      } = this.$store.state;
-      return isMobile;
-    },
+        config: { isMobile }
+      } = this.$store.state
+      return isMobile
+    }
   },
   methods: {
     handleCurrentChange(val) {
-      this.$emit("load-data", val);
+      this.$emit('load-data', val)
     },
     handleSelectionChange(val) {
-      this.$emit("on-select", val);
-    },
-  },
-};
+      this.$emit('on-select', val)
+    }
+  }
+}
 </script>
 
 <style lang="less">

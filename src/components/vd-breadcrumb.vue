@@ -2,18 +2,18 @@
   <div class="vd-breadcrumb">
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item v-for="item in menu" :key="item.path">{{item.name}}</el-breadcrumb-item>
+      <el-breadcrumb-item v-for="item in menu" :key="item.path">{{ item.name }}</el-breadcrumb-item>
     </el-breadcrumb>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'vd-breadcrumb',
+  name: 'VdBreadcrumb',
   computed: {
     menu() {
-      const { matched } = this.$route;
-      return matched.slice(1,3);
+      const { matched } = this.$route
+      return matched.slice(1, 3)
     }
   },
   methods: {
@@ -21,7 +21,6 @@ export default {
   }
 }
 </script>
-
 
 <style lang="less">
   .vd-breadcrumb {
