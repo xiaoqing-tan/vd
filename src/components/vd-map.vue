@@ -2,7 +2,7 @@
   <div class="vd-map">
     <div class="amap-wrapper">
       <el-amap-search-box class="search-box" :search-option="searchOption" :on-search-result="onSearch" />
-      <el-amap class="amap-box" :center="mapCenter" vid="amap-vue">
+      <el-amap ref="map" :events="events" zoom="15" class="amap-box" :center="mapCenter" vid="amap-vue">
         <el-amap-marker v-for="(marker, index) in markers" :key="index" :position="marker" />
       </el-amap>
     </div>
@@ -18,7 +18,28 @@ export default {
         city: '成都',
         citylimit: true
       },
-      mapCenter: [104.06667, 30.66667]
+      mapCenter: [104.06667, 30.66667],
+      map: null,
+      events: {
+        init: map => {
+          const { lat, lng } = map.getCenter()
+          this.mapCenter = [lng, lat]
+          map.setMapStyle('amap://styles/macaron')
+          map.setFeatures(['building', 'road', 'point'])
+          this.map = map
+        },
+        click: e => {
+        },
+        dragend: () => {
+          console.log(this.$refs.map.$$getCenter())
+        },
+        zoomchange: () => {
+          if (this.map) {
+            const zoom = this.map.getZoom()
+            this.centerScale = `transform: scale(${zoom * (zoom > 15 ? 2 : 0.8) / 15})`
+          }
+        }
+      }
     }
   },
   methods: {

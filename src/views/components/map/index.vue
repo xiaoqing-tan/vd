@@ -10,7 +10,18 @@
 
 <script>
 export default {
+  data() {
+    return {
+      location: null
+    }
+  },
+  async created() {
+    this.location = await this.$getLocation()
+    console.log(this.location)
+  },
+  methods: {
 
+  }
 }
 </script>
 
