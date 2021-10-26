@@ -28,21 +28,15 @@ jobs:
       env:
         CI: true
 
-    # 将打包结果拉至服务器
-    - name: Deploy to Server
-      uses: easingthemes/ssh-deploy@v2.0.8
+    - name: Deploy to Server # 第四步，rsync推送文件
+      uses: AEnterprise/rsync-deploy@v1.0 # 使用别人包装好的步骤镜像
       env:
-          # settings => secrets 添加服务器私钥
-          SSH_PRIVATE_KEY: ${{ secrets.QCLOUD_TOKEN }}
-          # 服务器地址，可以直接写，也可以在secrets创建（即私密不公开）
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          # 服务器ssh端口，默认22，改过端口才需要配置
-          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
-          # 登录账户
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          # 需要发送至远程服务器的文件 'build'为React打包产物
-          SOURCE: 'dist/'
-          # 服务器存储位置
-          TARGET: '/var/www/tanxiaoqing/vd'
-          # rsync参数，一般默认如下即可
-          ARGS: '-avzr --delete'
+        DEPLOY_KEY: ${{ secrets.QCLOUD_TOKEN }} # 引用配置，SSH私钥
+        ARGS: -avz --delete --exclude='*.pyc' # rsync参数，排除.pyc文件
+        SERVER_PORT: secrets.REMOTE_PORT # SSH端口
+        FOLDER: ./dist/* # 要推送的文件夹，路径相对于代码仓库的根目录
+        SERVER_IP: ${{ secrets.REMOTE_HOST }} # 引用配置，服务器的host名（IP或者域名domain.com）
+        USERNAME: ${{ secrets.REMOTE_USER }} # 引用配置，服务器登录名
+        SERVER_DESTINATION: /var/www/tanxiaoqing/vd # 部署到目标文件夹
+
+
