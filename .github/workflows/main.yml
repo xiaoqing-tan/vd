@@ -1,6 +1,6 @@
 name: Deploy To QCLOUD CI
 
-# 在master分支push操作后触发该流程
+# 在main分支push操作后触发该流程
 on: 
   push:
     branches: [ main ]
