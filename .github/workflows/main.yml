@@ -14,11 +14,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    # 指定环境 Node.js v12
-    - name: Use Node.js 12
-      uses: actions/setup-node@v1.4.0
+    # 指定环境 Node.js v14
+    - name: Use Node.js 14
+      uses: actions/setup-node@v2
       with:
-        node-version: '12.x'
+        node-version: '14.x'
     
     # 在GitHub服务器打包
     - name: Build
