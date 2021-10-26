@@ -1,0 +1,50 @@
+name: Deploy To QCLOUD CI
+
+# 在master分支push操作后触发该流程
+on: 
+  push:
+    branches: 
+      - master
+
+jobs:
+  build:
+    
+    runs-on: ubuntu-latest
+
+    steps:
+    # 一个让你的workflow能够访问到你仓库的actions
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    # 指定环境 Node.js v12
+    - name: Use Node.js 12
+      uses: actions/setup-node@v1.4.0
+      with:
+        node-version: '12.x'
+    
+    # 在GitHub服务器打包
+    - name: Build
+      run: |
+        yarn
+        yarn build
+      env:
+        CI: true
+
+    # 将打包结果拉至服务器
+    - name: Deploy to Server
+      uses: easingthemes/ssh-deploy@v2.0.8
+      env:
+          # settings => secrets 添加服务器私钥
+          SSH_PRIVATE_KEY: ${{ secrets.QCLOUD_TOKEN }}
+          # 服务器地址，可以直接写，也可以在secrets创建（即私密不公开）
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          # 服务器ssh端口，默认22，改过端口才需要配置
+          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+          # 登录账户
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          # 需要发送至远程服务器的文件 'build'为React打包产物
+          SOURCE: 'dist/'
+          # 服务器存储位置
+          TARGET: '/var/www/tanxiaoqing/vd'
+          # rsync参数，一般默认如下即可
+          ARGS: '-avzr --delete'
