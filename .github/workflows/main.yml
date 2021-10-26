@@ -3,14 +3,12 @@ name: Deploy To QCLOUD CI
 # 在master分支push操作后触发该流程
 on: 
   push:
-    branches: 
-      - main
-
+    branches: [ main ]
+  workflow_dispatch:
+  
 jobs:
   build:
-    
     runs-on: ubuntu-latest
-
     steps:
     # 一个让你的workflow能够访问到你仓库的actions
     - name: Checkout
