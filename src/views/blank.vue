@@ -41,11 +41,19 @@ export default {
     text-align: center;
     transition: all .3s ease;
     cursor: pointer;
+    width: 350px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     h2, p {
       color: rgba(33, 150, 243, .9);
+      margin: 0 0 10px
     }
     p {
       font-size: 14px;
+      margin: 0;
     }
     &:hover {
       transition: all .3s ease;
