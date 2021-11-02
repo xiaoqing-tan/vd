@@ -28,7 +28,7 @@ const router = new Router({
       }
     },
     {
-      path: '/blank',
+      path: '/',
       component: () => import('./views/blank.vue'),
       meta: {
         title: '空白'

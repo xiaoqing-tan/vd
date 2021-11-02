@@ -5,7 +5,7 @@ function resolve(dir) {
 }
 module.exports = {
   productionSourceMap: false,
-  publicPath: isProd ? '//assets.tanxiaoqing.top/vd' : '/',
+  publicPath: isProd ? '//assets.tanxiaoqing.top' : '/',
   chainWebpack: (config) => {
     config.module
       .rule('svg')

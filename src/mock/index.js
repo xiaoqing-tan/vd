@@ -15,7 +15,7 @@ const menu1 = [
       {
         name: '首页',
         icon: 'el-icon-s-home',
-        path: '',
+        path: '/index',
         component: 'home',
         type: 'top'
       },

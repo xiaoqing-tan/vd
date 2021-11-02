@@ -1,5 +1,5 @@
 <template>
-  <div class="login" :class="{ 'login-mobile': isMobile }">
+  <div v-loading="loading" class="login" :class="{ 'login-mobile': isMobile }">
     <div class="login__header">
       <h1>VD</h1>
     </div>
@@ -72,7 +72,7 @@ export default {
         await this.$store.dispatch('userLogin', this.form)
         this.$message.success('登录成功')
         this.$router.push({
-          path: redirect || '/'
+          path: redirect || '/index'
         })
       } catch (error) {
         this.$message.error('登录失败')
