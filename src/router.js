@@ -31,7 +31,7 @@ const router = new Router({
       path: '/',
       component: () => import('./views/blank.vue'),
       meta: {
-        title: '空白'
+        title: 'VD'
       }
     }
   ]
@@ -43,7 +43,7 @@ router.afterEach((to) => {
   document.title = `${to.meta.title} - ${config.name}`
 })
 
-const whiteList = ['/login']
+const whiteList = ['/login', '/']
 
 router.beforeEach(async(to, from, next) => {
   const { userData: { auth, init, role }} = store.state
