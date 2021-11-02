@@ -35,7 +35,6 @@ export default {
   }
   &__content {
     border: #f9f9f9 1px solid;
-    padding: 50px 100px;
     border-radius: 20px;
     background-color: #fff;
     text-align: center;
