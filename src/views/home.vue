@@ -27,6 +27,7 @@ export default {
 
 <style lang="less">
 .home {
+  margin-left: 0;
   &__container {
     display: flex;
     height: 100vh;
