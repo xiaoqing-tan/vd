@@ -16,7 +16,7 @@ const menu1 = [
         name: '首页',
         icon: 'el-icon-s-home',
         path: '/index',
-        component: 'home',
+        component: 'index',
         type: 'top'
       },
       {
@@ -98,7 +98,7 @@ const menu2 = [
         name: '首页',
         icon: 'el-icon-s-home',
         path: '/index',
-        component: 'home',
+        component: 'index',
         type: 'top'
       },
       {

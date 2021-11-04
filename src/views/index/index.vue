@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="index">
     <el-alert
       title="警告提示的文案"
       type="warning"
@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style lang="less">
-  .home {
+  .index {
     h2 {
       color: #333;
       font-size: 18px;

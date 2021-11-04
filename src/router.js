@@ -29,7 +29,7 @@ const router = new Router({
     },
     {
       path: '/',
-      component: () => import('./views/blank.vue'),
+      component: () => import('./views/home.vue'),
       meta: {
         title: 'VD'
       }
