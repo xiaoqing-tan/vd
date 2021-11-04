@@ -1,5 +1,5 @@
 <template>
-  <div class="page home">
+  <div class="home">
     <div class="home__container">
       <div class="home__content" @click="onClick">
         <h2>VD</h2>
@@ -27,7 +27,6 @@ export default {
 
 <style lang="less">
 .home {
-  margin-left: 0;
   &__container {
     display: flex;
     height: 100vh;

@@ -31,7 +31,7 @@ const router = new Router({
       path: '/',
       component: () => import('./views/home.vue'),
       meta: {
-        title: '首页'
+        title: '主页'
       }
     }
   ]
