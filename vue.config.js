@@ -1,11 +1,11 @@
 const path = require('path')
-// const isProd = process.env.NODE_ENV === 'production'
+const isProd = process.env.NODE_ENV === 'production'
 function resolve(dir) {
   return path.join(__dirname, '.', dir)
 }
 module.exports = {
   productionSourceMap: false,
-  // publicPath: isProd ? '//assets.tanxiaoqing.top' : '/',
+  publicPath: isProd ? '//assets.tanxiaoqing.top' : '/',
   chainWebpack: (config) => {
     config.module
       .rule('svg')
