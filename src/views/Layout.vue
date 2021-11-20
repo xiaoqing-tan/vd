@@ -9,7 +9,7 @@
           @click="onToggleSidebar"
         />
       </div>
-      <vd-nav v-if="mode === 'horizontal'" :is-collapse="isCollapse" :mode="mode" />
+      <vd-nav v-if="mode === 'horizontal'" :is-collapse="false" :mode="mode" />
       <div class="topbar__setting">
         <el-dropdown @command="handleCommand">
           <span class="el-dropdown-link">
