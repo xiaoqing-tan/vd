@@ -18,29 +18,30 @@ Router.prototype.push = function push(location, onResolve, onReject) {
   return originalPush.call(this, location).catch((err) => err)
 }
 
+const { config } = store.state
+
 const router = new Router({
   routes: [
     {
       path: '/login',
       component: () => import('./views/login/index.vue'),
       meta: {
-        title: '登录'
+        title: `登录 - ${config.name}`
       }
     },
     {
       path: '/',
       component: () => import('./views/home.vue'),
       meta: {
-        title: '主页'
+        title: '前端技术记录'
       }
     }
   ]
 })
 
 router.afterEach((to) => {
-  const { config } = store.state
   NProgress.done()
-  document.title = `${to.meta.title} - ${config.name}`
+  document.title = `${to.meta.title}`
 })
 
 const whiteList = ['/login', '/']
